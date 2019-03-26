@@ -1,6 +1,10 @@
 .MainPage {
   background: silver;
-  opacity: 0.9;
-  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin: 40px auto;
+  opacity: 0.9;
+  text-align: center;
+  width: 70vw;
 }
