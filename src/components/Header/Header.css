@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+
+.Header {
+  align-items: center;
+  background-image: linear-gradient(to right, transparent, silver, silver, transparent);
+  display: flex;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.8rem;
+  justify-content: center;
+}
+
+.todd-img {
+  height: 70px;
+  position: relative;
+  top: 12px;
+}
+
+@media screen and (max-width: 760px) {
+  .Header {
+    font-size: 1.2rem;
+  }
+
+  .todd-img {
+    height: 60px;
+    position: relative;
+    top: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Header {
+    color: rgb(238, 238, 238);
+    font-size: 0.8rem;
+  }
+
+  .todd-img {
+    height: 40px;
+    position: relative;
+    top: 8px;
+  }
+}
