@@ -30,13 +30,13 @@ class MainPage extends Component {
         <h3>{team.name}</h3>
         <h5>points: {team.points}</h5>
         <h5>drafted by: {team.drafted_by}</h5>
-        <h5>eliminated: {team.is_eliminated}</h5>
+        <h5>eliminated: {team.is_eliminated + ""}</h5>
       </div>
     ));
     return (
       <div className="MainPage">
-        {players}
-        {teams}
+        <div className="players-wrapper">{players}</div>
+        <div className="teams-wrapper">{teams}</div>
       </div>
     );
   }
