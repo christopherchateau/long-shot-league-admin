@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { getTeamData } from "../../apiCalls";
+import { getPlayerData } from "../../apiCalls";
 import "./MainPage.css";
 
 class MainPage extends Component {
@@ -8,11 +10,11 @@ class MainPage extends Component {
   };
 
   componentDidMount = async () => {
+    const teamData = await getTeamData();
+    const playerData = await getPlayerData();
 
-    // this.setState({ teamData });
+    await this.setState({ teamData, playerData });
   };
-
-
 
   render() {
     return <div className="MainPage" />;
