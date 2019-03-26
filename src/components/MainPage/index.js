@@ -12,12 +12,33 @@ class MainPage extends Component {
   componentDidMount = async () => {
     const teamData = await getTeamData();
     const playerData = await getPlayerData();
-
     await this.setState({ teamData, playerData });
   };
 
   render() {
-    return <div className="MainPage" />;
+    const { teamData, playerData } = this.state;
+
+    const players = playerData.map(player => (
+      <div className="player" key={player.name}>
+        <h3>{player.name}</h3>
+        <h5>bonus: {player.bonus_points}</h5>
+      </div>
+    ));
+
+    const teams = teamData.map(team => (
+      <div className="team" key={team.name}>
+        <h3>{team.name}</h3>
+        <h5>points: {team.points}</h5>
+        <h5>drafted by: {team.drafted_by}</h5>
+        <h5>eliminated: {team.is_eliminated}</h5>
+      </div>
+    ));
+    return (
+      <div className="MainPage">
+        {players}
+        {teams}
+      </div>
+    );
   }
 }
 
