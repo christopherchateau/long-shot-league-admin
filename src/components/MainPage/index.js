@@ -36,11 +36,14 @@ class MainPage extends Component {
     ));
 
     const teams = teamData.map(team => (
-      <div className="team" key={team.name}>
-        <h3>{team.name}</h3>
-        <h5>points: {team.points}</h5>
-        <h5>drafted by: {team.drafted_by}</h5>
-        <h5>eliminated: {team.is_eliminated + ""}</h5>
+      <div
+        className={"team".concat(team.is_eliminated ? " red" : " green")}
+        key={team.name}
+      >
+        <h3>
+          {team.name} - {team.points}
+        </h3>
+        <h5>{team.drafted_by}</h5>
       </div>
     ));
 

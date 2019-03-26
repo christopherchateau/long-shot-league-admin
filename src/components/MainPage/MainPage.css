@@ -16,7 +16,16 @@
 
 .player,
 .team {
-  background: rgb(145, 145, 145);
+  background: rgb(101, 101, 101);
+  color: white;
   margin: 10px;
   width: 400px;
+}
+
+.red {
+  background: rgb(108, 0, 0);
+}
+
+.green {
+  background: rgb(0, 87, 0);
 }
