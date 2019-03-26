@@ -10,10 +10,20 @@ class MainPage extends Component {
   };
 
   componentDidMount = async () => {
-    const teamData = await getTeamData();
-    const playerData = await getPlayerData();
-    await this.setState({ teamData, playerData });
+    let teamData = await getTeamData();
+    let playerData = await getPlayerData();
+
+    await this.setState({
+      teamData: this.sortByName(teamData),
+      playerData: this.sortByName(playerData)
+    });
   };
+
+  sortByName = input =>
+    input.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+    });
 
   render() {
     const { teamData, playerData } = this.state;
@@ -33,6 +43,7 @@ class MainPage extends Component {
         <h5>eliminated: {team.is_eliminated + ""}</h5>
       </div>
     ));
+
     return (
       <div className="MainPage">
         <div className="players-wrapper">{players}</div>
