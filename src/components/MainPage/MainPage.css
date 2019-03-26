@@ -1,10 +1,27 @@
 .MainPage {
   background: silver;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   margin: 40px auto;
   opacity: 0.9;
   text-align: center;
   width: 70vw;
+}
+
+.players-wrapper,
+.teams-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.player,
+.team {
+  background: rgb(145, 145, 145);
+  margin: 10px;
+  width: 400px;
+}
+
+
+.team {
+
 }
