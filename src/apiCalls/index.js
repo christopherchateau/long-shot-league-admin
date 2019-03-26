@@ -6,7 +6,7 @@ export const getTeamData = async () => {
   return teamData;
 };
 
-export const getPlayersData = async () => {
+export const getPlayerData = async () => {
   const response = await fetch(
     "https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/players"
   );
