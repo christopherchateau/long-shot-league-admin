@@ -9,7 +9,7 @@ class Header extends Component {
         <h1>
           LONG SH
           <img className="todd-img" src={toddImg} />
-          T LEAGUE
+          T ADMIN
         </h1>
       </div>
     );
