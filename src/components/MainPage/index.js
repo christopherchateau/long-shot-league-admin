@@ -20,8 +20,18 @@ class MainPage extends Component {
     });
   };
 
-  handleTeamClick = input => {
-    console.log(input);
+  updateTeamScore = async (name, points) => {
+    const response = await fetch(
+      `http://long-shot-league-be.herokuapp.com/api/v1/longshotleague/team`,
+      {
+        method: "PATCH",
+        credentials: "same-origin",
+        body: JSON.stringify({ name, points }),
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+    const data = await response.json();
+    console.log(data);
   };
 
   sortByName = input =>
@@ -54,7 +64,7 @@ class MainPage extends Component {
 
     return (
       <div className="MainPage">
-        <TeamForm handleTeamClick={this.handleTeamClick} teamData={teamData} />
+        <TeamForm updateTeamScore={this.updateTeamScore} teamData={teamData} />
         <div className="players-wrapper">{players}</div>
         <div className="teams-wrapper">{teams}</div>
       </div>
