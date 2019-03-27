@@ -2,7 +2,20 @@ import React, { Component } from "react";
 import "./TeamForm.css";
 
 class TeamForm extends Component {
+  state = {
+    points: ''
+  };
+
+  handleTeamClick = team => {
+    this.props.updateTeamScore(team, this.state.points)
+  }
+
+  handleInputField = (e) => {
+    this.setState({ points: e.target.value})
+  }
+
   render() {
+    const { points } = this.state;
     const { teamData, handleTeamClick } = this.props;
     const teamDropDownMenu = teamData.map((team, index) => {
       return (
@@ -17,10 +30,16 @@ class TeamForm extends Component {
         <select className="drop-down-menu" ref={input => (this.menu = input)}>
           {teamDropDownMenu}
         </select>
-        <input className="team-input" type="number" placeholder="points"/>
+        <input
+          onChange={this.handleInputField}
+          className="team-input"
+          type="number"
+          value={points}
+          placeholder="points"
+        />
         <button
           className="team-btn"
-          onClick={() => handleTeamClick(this.menu.value)}
+          onClick={() => this.handleTeamClick(this.menu.value)}
         >
           Sumbit
         </button>
