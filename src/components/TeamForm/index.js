@@ -3,16 +3,16 @@ import "./TeamForm.css";
 
 class TeamForm extends Component {
   state = {
-    points: ''
+    points: ""
   };
 
   handleTeamClick = team => {
-    this.props.updateTeamScore(team, this.state.points)
-  }
+    this.props.updateTeamScore(team, this.state.points);
+  };
 
-  handleInputField = (e) => {
-    this.setState({ points: e.target.value})
-  }
+  handleInputField = e => {
+    this.setState({ points: e.target.value });
+  };
 
   render() {
     const { points } = this.state;
@@ -37,6 +37,10 @@ class TeamForm extends Component {
           value={points}
           placeholder="points"
         />
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider" />
+        </label>
         <button
           className="team-btn"
           onClick={() => this.handleTeamClick(this.menu.value)}
