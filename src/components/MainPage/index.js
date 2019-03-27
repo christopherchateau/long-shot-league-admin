@@ -10,7 +10,15 @@ class MainPage extends Component {
     playerData: []
   };
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
+    this.loadData();
+  };
+
+  componentDidUpdate = () => {
+    this.loadData();
+  };
+
+  loadData = async () => {
     let teamData = await getTeamData();
     let playerData = await getPlayerData();
 
