@@ -1,0 +1,36 @@
+.TeamForm {
+  align-items: center;
+  background: silver;
+  display: flex;
+  justify-content: space-around;
+  margin: 40px auto;
+  opacity: 0.9;
+  text-align: center;
+  width: 70vw;
+}
+
+.drop-down-menu {
+  font-size: 22px;
+}
+
+.team-input {
+  font-size: 22px;
+}
+
+.team-btn {
+  background: rgb(84, 84, 84);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
+  margin: 20px;
+  min-height: 50px;
+  padding: 10px 30px;
+  transition: all 0.5s ease-out;
+}
+
+.team-btn:hover {
+  background: rgb(242, 242, 242);
+  color: rgb(84, 84, 84);
+  transition: all 0.5s ease-out;
+}
