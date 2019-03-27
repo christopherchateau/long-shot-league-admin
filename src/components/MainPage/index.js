@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TeamForm from "../TeamForm";
 import { getTeamData } from "../../apiCalls";
 import { getPlayerData } from "../../apiCalls";
 import "./MainPage.css";
@@ -17,6 +18,10 @@ class MainPage extends Component {
       teamData: this.sortByName(teamData),
       playerData: this.sortByName(playerData)
     });
+  };
+
+  handleTeamClick = input => {
+    console.log(input);
   };
 
   sortByName = input =>
@@ -49,6 +54,7 @@ class MainPage extends Component {
 
     return (
       <div className="MainPage">
+        <TeamForm handleTeamClick={this.handleTeamClick} teamData={teamData} />
         <div className="players-wrapper">{players}</div>
         <div className="teams-wrapper">{teams}</div>
       </div>
