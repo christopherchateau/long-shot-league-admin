@@ -60,6 +60,7 @@ class TeamForm extends Component {
         <select
           className="drop-down-menu"
           ref={input => (this.menu = input)}
+          value={currentTeamData.name}
           onChange={() => this.handleDropDown(this.menu.value)}
         >
           {teamDropDownMenu}
