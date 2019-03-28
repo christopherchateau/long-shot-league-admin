@@ -1,3 +1,10 @@
+.player {
+  height: 320px;
+  margin: 10px;
+  overflow: auto;
+
+}
+
 .player-name {
-  text-decoration: underline;
+  
 }
