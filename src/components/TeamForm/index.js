@@ -19,7 +19,7 @@ class TeamForm extends Component {
   handleDropDown = team => {
     const currentTeam = this.props.teamData.find(
       listTeam => listTeam.name === team
-    );
+      );
     this.setState({ currentTeam, isEliminated: currentTeam.is_eliminated });
   };
 
@@ -39,6 +39,7 @@ class TeamForm extends Component {
   render() {
     const { points, isEliminated } = this.state;
     const { teamData } = this.props;
+    teamData.unshift('-')
     const teamDropDownMenu = teamData.map((team, index) => {
       return (
         <option value={team.name} key={index}>
