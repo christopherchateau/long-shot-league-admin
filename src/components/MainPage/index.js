@@ -45,14 +45,12 @@ class MainPage extends Component {
 
     return (
       <div className="MainPage">
-        <div className="main-page-toggle">
-          <button
-            className="main-page-toggle-btn"
-            onClick={this.handleToggleBtnClick}
-          >
-            {display}
-          </button>
-        </div>
+        <button
+          className="main-page-toggle-btn"
+          onClick={this.handleToggleBtnClick}
+        >
+          {display}
+        </button>
         {display === "Players" && (
           <Players playerData={playerData} loadData={this.loadData} />
         )}
