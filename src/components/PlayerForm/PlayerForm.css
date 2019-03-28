@@ -38,7 +38,7 @@
 }
 
 .player-btn:disabled {
+  color: white;
   background: rgb(176, 176, 176);
-  cursor: none;
+  cursor: auto;
 }
-
