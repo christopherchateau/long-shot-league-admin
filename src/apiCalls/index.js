@@ -15,3 +15,11 @@ export const getPlayerData = async () => {
   playerData.push({ name: "" });
   return playerData;
 };
+
+export const getBonusData = async () => {
+  const response = await fetch(
+    "http://localhost:3001/api/v1/longshotleague/bonus"
+  );
+  const bonusData = await response.json();
+  return bonusData;
+};

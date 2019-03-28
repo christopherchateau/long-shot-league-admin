@@ -92,7 +92,7 @@ class PlayerForm extends Component {
         <button
           className="player-btn"
           onClick={this.submitPlayerData}
-          disabled={!bonusDescription.length}
+          disabled={!bonusDescription.length || !currentPlayerData.id}
         >
           Sumbit
         </button>
