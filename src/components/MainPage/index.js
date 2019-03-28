@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TeamForm from "../TeamForm";
+import Players from "../Players";
 import { getTeamData } from "../../apiCalls";
 import { getPlayerData } from "../../apiCalls";
 import "./MainPage.css";
@@ -71,7 +72,7 @@ class MainPage extends Component {
 
     return (
       <div className="MainPage">
-        <TeamForm updateTeamScore={this.updateTeamScore} teamData={teamData} />
+        {/* <TeamForm updateTeamScore={this.updateTeamScore} teamData={teamData} /> */}
         <div className="players-wrapper">{players}</div>
         <div className="teams-wrapper">{teams}</div>
       </div>
