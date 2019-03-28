@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import TeamForm from "../TeamForm";
 import "./Players.css";
 
 class Players extends Component {
   render() {
     return (
-      <div className="Players">players
+      <div className="Players">teams
       </div>
     );
   }
