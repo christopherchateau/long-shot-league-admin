@@ -11,7 +11,11 @@ class TeamForm extends Component {
     this.setState({ pointsInput: e.target.value });
   };
 
-  handleToggleSwitch = status => {};
+  handleToggleSwitch = () => {
+    let { currentTeamData } = this.state;
+    currentTeamData.is_eliminated = !currentTeamData.is_eliminated;
+    this.setState({ currentTeamData });
+  };
 
   handleDropDown = team => {
     const currentTeamData = this.props.teamData.find(
@@ -22,7 +26,6 @@ class TeamForm extends Component {
 
   updateTeamData = async () => {
     const { currentTeamData, pointsInput } = this.state;
-    console.log(currentTeamData.name);
     const response = await fetch(
       `http://localhost:3001/api/v1/longshotleague/team`,
       {
@@ -37,13 +40,14 @@ class TeamForm extends Component {
       }
     );
     const data = await response.json();
+    await this.props.loadData();
   };
 
   render() {
     const { currentTeamData, pointsInput } = this.state;
     const { teamData } = this.props;
-    teamData.unshift("-");
-    let teamDropDownMenu = teamData.map((team, index) => {
+
+    const teamDropDownMenu = teamData.map((team, index) => {
       return (
         <option value={team.name} key={index}>
           {team.name}
@@ -68,7 +72,11 @@ class TeamForm extends Component {
           placeholder="points"
         />
         <label className="switch">
-          <input type="checkbox" checked={currentTeamData.is_eliminated} />
+          <input
+            type="checkbox"
+            checked={currentTeamData.is_eliminated}
+            onChange={this.handleToggleSwitch}
+          />
           <span className="slider" />
         </label>
         <button className="team-btn" onClick={this.updateTeamData}>

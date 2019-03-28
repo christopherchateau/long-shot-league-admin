@@ -4,8 +4,8 @@ import "./Teams.css";
 
 class Teams extends Component {
   render() {
-    const { teamData } = this.props;
-    const teams = teamData.map(team => (
+    const { teamData, loadData } = this.props;
+    const teams = teamData.slice(1).map(team => (
       <div
         className={"team".concat(team.is_eliminated ? " red" : " green")}
         key={team.name}
@@ -18,7 +18,7 @@ class Teams extends Component {
     ));
     return (
       <div>
-        <TeamForm teamData={teamData}/>
+        <TeamForm teamData={teamData} loadData={loadData}/>
         <div className="Teams">{teams}</div>;
       </div>
     );
