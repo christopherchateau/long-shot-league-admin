@@ -15,22 +15,13 @@
   width: 70vw;
 }
 
-.main-page-toggle {
-  background: silver;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 40px auto;
-  width: 70vw;
-}
-
 .main-page-toggle-btn {
   background: rgb(84, 84, 84);
-  border: none;
+  border: 2px solid silver;
   color: white;
   cursor: pointer;
-  font-size: 32px;
-  margin: 15px auto;
+  font-size: 36px;
+  margin: 30px auto;
   padding: 10px 30px;
   transition: all 0.5s ease-out;  
 }
