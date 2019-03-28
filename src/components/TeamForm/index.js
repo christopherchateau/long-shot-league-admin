@@ -3,7 +3,9 @@ import "./TeamForm.css";
 
 class TeamForm extends Component {
   state = {
-    points: ""
+    points: "",
+    currentTeam: "",
+    isEliminated: ""
   };
 
   handleTeamClick = team => {
@@ -12,6 +14,13 @@ class TeamForm extends Component {
 
   handleInputField = e => {
     this.setState({ points: e.target.value });
+  };
+
+  handleDropDown = team => {
+    const currentTeam = this.props.teamData.find(
+      listTeam => listTeam.name === team
+    );
+    this.setState({ currentTeam, isEliminated: currentTeam.is_eliminated });
   };
 
   updateTeamScore = async (name, points) => {
@@ -28,7 +37,8 @@ class TeamForm extends Component {
   };
 
   render() {
-    const { points } = this.state, { teamData } = this.props;
+    const { points, isEliminated } = this.state;
+    const { teamData } = this.props;
     const teamDropDownMenu = teamData.map((team, index) => {
       return (
         <option value={team.name} key={index}>
@@ -39,7 +49,11 @@ class TeamForm extends Component {
 
     return (
       <div className="TeamForm">
-        <select className="drop-down-menu" ref={input => (this.menu = input)}>
+        <select
+          className="drop-down-menu"
+          ref={input => (this.menu = input)}
+          onChange={() => this.handleDropDown(this.menu.value)}
+        >
           {teamDropDownMenu}
         </select>
         <input
@@ -49,9 +63,9 @@ class TeamForm extends Component {
           value={points}
           placeholder="points"
         />
-        <label class="switch">
-          <input type="checkbox" />
-          <span class="slider" />
+        <label className="switch">
+          <input type="checkbox" checked={isEliminated} />
+          <span className="slider" />
         </label>
         <button
           className="team-btn"
