@@ -1,14 +1,22 @@
 import React, { Component } from "react";
 import TeamForm from "../TeamForm";
-import "./Players.css";
+import "./Teams.css";
 
-class Players extends Component {
+class Teams extends Component {
   render() {
-    return (
-      <div className="Players">teams
+    const teams = this.props.teamData.map(team => (
+      <div
+        className={"team".concat(team.is_eliminated ? " red" : " green")}
+        key={team.name}
+      >
+        <h3>
+          {team.name} - {team.points}
+        </h3>
+        <h5>{team.drafted_by}</h5>
       </div>
-    );
+    ));
+    return <div className="Teams">{teams}</div>;
   }
 }
 
-export default Players;
+export default Teams;
