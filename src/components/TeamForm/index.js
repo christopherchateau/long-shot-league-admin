@@ -17,14 +17,14 @@ class TeamForm extends Component {
     this.setState({ currentTeamData });
   };
 
-  handleDropDown = team => {
+  handleDropDown = name => {
     const currentTeamData = this.props.teamData.find(
-      listTeam => listTeam.name === team
+      team => team.name === name
     );
     this.setState({ currentTeamData });
   };
 
-  updateTeamData = async () => {
+  submitTeamData = async () => {
     const { currentTeamData, pointsInput } = this.state;
     const response = await fetch(
       `http://localhost:3001/api/v1/longshotleague/team`,
@@ -81,7 +81,7 @@ class TeamForm extends Component {
         </label>
         <button
           className="team-btn"
-          onClick={this.updateTeamData}
+          onClick={this.submitTeamData}
           disabled={!pointsInput.length || !currentTeamData.id}
         >
           Sumbit
