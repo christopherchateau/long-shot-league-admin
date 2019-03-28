@@ -1,6 +1,6 @@
 export const getTeamData = async () => {
   const response = await fetch(
-    "https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/teams"
+    "http://localhost:3001/api/v1/longshotleague/teams"
   );
   const teamData = await response.json();
   return teamData;
@@ -8,7 +8,7 @@ export const getTeamData = async () => {
 
 export const getPlayerData = async () => {
   const response = await fetch(
-    "https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/players"
+    "http://localhost:3001/api/v1/longshotleague/players"
   );
   const playerData = await response.json();
   return playerData;

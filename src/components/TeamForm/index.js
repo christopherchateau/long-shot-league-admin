@@ -3,33 +3,36 @@ import "./TeamForm.css";
 
 class TeamForm extends Component {
   state = {
-    points: "",
-    currentTeam: "",
-    isEliminated: ""
-  };
-
-  handleTeamClick = team => {
-    this.updateTeamScore(team, this.state.points);
+    currentTeamData: "",
+    pointsInput: ""
   };
 
   handleInputField = e => {
-    this.setState({ points: e.target.value });
+    this.setState({ pointsInput: e.target.value });
   };
+
+  handleToggleSwitch = status => {};
 
   handleDropDown = team => {
-    const currentTeam = this.props.teamData.find(
+    const currentTeamData = this.props.teamData.find(
       listTeam => listTeam.name === team
-      );
-    this.setState({ currentTeam, isEliminated: currentTeam.is_eliminated });
+    );
+    this.setState({ currentTeamData });
   };
 
-  updateTeamScore = async (name, points) => {
+  updateTeamData = async () => {
+    const { currentTeamData, pointsInput } = this.state;
+    console.log(currentTeamData.name);
     const response = await fetch(
-      `http://long-shot-league-be.herokuapp.com/api/v1/longshotleague/team`,
+      `http://localhost:3001/api/v1/longshotleague/team`,
       {
         method: "PATCH",
         credentials: "same-origin",
-        body: JSON.stringify({ name, points }),
+        body: JSON.stringify({
+          name: currentTeamData.name,
+          points: pointsInput,
+          is_eliminated: currentTeamData.is_eliminated
+        }),
         headers: { "Content-Type": "application/json" }
       }
     );
@@ -37,10 +40,10 @@ class TeamForm extends Component {
   };
 
   render() {
-    const { points, isEliminated } = this.state;
+    const { currentTeamData, pointsInput } = this.state;
     const { teamData } = this.props;
-    teamData.unshift('-')
-    const teamDropDownMenu = teamData.map((team, index) => {
+    teamData.unshift("-");
+    let teamDropDownMenu = teamData.map((team, index) => {
       return (
         <option value={team.name} key={index}>
           {team.name}
@@ -61,17 +64,14 @@ class TeamForm extends Component {
           onChange={this.handleInputField}
           className="team-input"
           type="number"
-          value={points}
+          value={pointsInput}
           placeholder="points"
         />
         <label className="switch">
-          <input type="checkbox" checked={isEliminated} />
+          <input type="checkbox" checked={currentTeamData.is_eliminated} />
           <span className="slider" />
         </label>
-        <button
-          className="team-btn"
-          onClick={() => this.handleTeamClick(this.menu.value)}
-        >
+        <button className="team-btn" onClick={this.updateTeamData}>
           Sumbit
         </button>
       </div>
