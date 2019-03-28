@@ -3,9 +3,10 @@
   opacity: 0.9;
 }
 
+.Teams,
+.Players,
 .team-form,
-.players-wrapper,
-.teams-wrapper {
+.player-form {
   background: silver;
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +16,7 @@
 }
 
 .players-wrapper,
-.teams-wrapper { 
+.teams-wrapper {
   max-height: 55vh;
   overflow: auto;
 }
