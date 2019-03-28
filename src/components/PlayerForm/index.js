@@ -68,6 +68,7 @@ class PlayerForm extends Component {
         <select
           className="bonus-drop-down"
           ref={input => (this.menu = input)}
+          defaultValue={1}
           onChange={() => this.handleDropDown(this.menu.value)}
         >
           {bonusDropDownMenu}
@@ -77,7 +78,7 @@ class PlayerForm extends Component {
           className="bonus-input"
           type="text"
           value={bonusDescription}
-          placeholder="points"
+          placeholder="bonus description"
         />
         <button
           className="player-btn"
