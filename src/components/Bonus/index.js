@@ -6,7 +6,7 @@ class Bonus extends Component {
     const { bonusData } = this.props;
     return (
       <div className="Bonus">
-        <h3>{`${bonusData.description} (${bonusData.points})`}</h3>
+        <h5>{`${bonusData.description} (${bonusData.points}pts)`}</h5>
       </div>
     );
   }
