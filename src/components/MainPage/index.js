@@ -3,12 +3,14 @@ import Players from "../Players";
 import Teams from "../Teams";
 import { getTeamData } from "../../apiCalls";
 import { getPlayerData } from "../../apiCalls";
+import { getBonusData } from "../../apiCalls";
 import "./MainPage.css";
 
 class MainPage extends Component {
   state = {
     teamData: [],
     playerData: [],
+    bonusData: [],
     display: "Players"
   };
 
@@ -19,8 +21,10 @@ class MainPage extends Component {
   loadData = async () => {
     let teamData = await getTeamData();
     let playerData = await getPlayerData();
+    let bonusData = await getBonusData();
 
     await this.setState({
+      bonusData,
       teamData: this.sortByName(teamData),
       playerData: this.sortByName(playerData)
     });
@@ -41,7 +45,7 @@ class MainPage extends Component {
     });
 
   render() {
-    const { playerData, teamData, display } = this.state;
+    const { playerData, teamData, bonusData, display } = this.state;
 
     return (
       <div className="MainPage">
@@ -52,7 +56,11 @@ class MainPage extends Component {
           {display}
         </button>
         {display === "Players" && (
-          <Players playerData={playerData} loadData={this.loadData} />
+          <Players
+            playerData={playerData}
+            bonusData={bonusData}
+            loadData={this.loadData}
+          />
         )}
         {display === "Teams" && (
           <Teams teamData={teamData} loadData={this.loadData} />
