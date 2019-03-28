@@ -12,5 +12,6 @@ export const getPlayerData = async () => {
     "http://localhost:3001/api/v1/longshotleague/players"
   );
   const playerData = await response.json();
+  playerData.push({ name: "" });
   return playerData;
 };
