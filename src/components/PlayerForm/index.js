@@ -11,14 +11,14 @@ class PlayerForm extends Component {
     this.setState({ bonusDescription: e.target.value });
   };
 
-  handleDropDown = team => {
-    // const currentPlayerData = this.props.teamData.find(
-    //   listTeam => listTeam.name === team
-    // );
-    // this.setState({ currentPlayerData });
+  handlePlayerDropDown = name => {
+    const currentPlayerData = this.props.playerData.find(
+      player => player.name === name
+    );
+    this.setState({ currentPlayerData });
   };
 
-  updatePlayerData = async () => {
+  submitPlayerData = async () => {
     const { currentPlayerData, bonusDescription } = this.state;
     const response = await fetch(
       `http://localhost:3001/api/v1/longshotleague/player`,
@@ -61,7 +61,7 @@ class PlayerForm extends Component {
         <select
           className="player-drop-down"
           ref={input => (this.menu = input)}
-          onChange={() => this.handleDropDown(this.menu.value)}
+          onChange={() => this.handlePlayerDropDown(this.menu.value)}
         >
           {teamDropDownMenu}
         </select>
@@ -69,7 +69,7 @@ class PlayerForm extends Component {
           className="bonus-drop-down"
           ref={input => (this.menu = input)}
           defaultValue={1}
-          onChange={() => this.handleDropDown(this.menu.value)}
+          onChange={() => this.handleBonusDropDown(this.menu.value)}
         >
           {bonusDropDownMenu}
         </select>
@@ -82,7 +82,7 @@ class PlayerForm extends Component {
         />
         <button
           className="player-btn"
-          onClick={this.updateTeamData}
+          onClick={this.submitPlayerData}
           disabled={!bonusDescription.length}
         >
           Sumbit
