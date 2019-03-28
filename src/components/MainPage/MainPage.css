@@ -14,6 +14,12 @@
   width: 70vw;
 }
 
+.players-wrapper,
+.teams-wrapper { 
+  max-height: 55vh;
+  overflow: auto;
+}
+
 .player,
 .team {
   background: rgb(101, 101, 101);
