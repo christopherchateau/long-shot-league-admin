@@ -9,7 +9,7 @@ class MainPage extends Component {
   state = {
     teamData: [],
     playerData: [],
-    display: 'teams'
+    display: "teams"
   };
 
   componentDidMount = () => {
@@ -30,17 +30,12 @@ class MainPage extends Component {
     });
   };
 
-  updateTeamScore = async (name, points) => {
-    const response = await fetch(
-      `http://long-shot-league-be.herokuapp.com/api/v1/longshotleague/team`,
-      {
-        method: "PATCH",
-        credentials: "same-origin",
-        body: JSON.stringify({ name, points }),
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-    const data = await response.json();
+  handleToggleBtnClick = () => {
+    let display = "";
+    this.state.display === "teams"
+      ? (display = "players")
+      : (display = "teams");
+    this.setState({ display });
   };
 
   sortByName = input =>
@@ -55,10 +50,15 @@ class MainPage extends Component {
     return (
       <div className="MainPage">
         <div className="main-page-toggle">
-        <button className="main-page-toggle-btn">{display}</button>
+          <button
+            className="main-page-toggle-btn"
+            onClick={this.handleToggleBtnClick}
+          >
+            {display}
+          </button>
         </div>
-        {display ==='players' &&<Players playerData={playerData} />}
-        {display === 'teams' && <Teams teamData={teamData} updateTeamScore={this.updateTeamScore} />}
+        {display === "players" && <Players playerData={playerData} />}
+        {display === "teams" && <Teams teamData={teamData} />}
       </div>
     );
   }
