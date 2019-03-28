@@ -7,16 +7,29 @@ class TeamForm extends Component {
   };
 
   handleTeamClick = team => {
-    this.props.updateTeamScore(team, this.state.points);
+    this.updateTeamScore(team, this.state.points);
   };
 
   handleInputField = e => {
     this.setState({ points: e.target.value });
   };
 
+  updateTeamScore = async (name, points) => {
+    const response = await fetch(
+      `http://long-shot-league-be.herokuapp.com/api/v1/longshotleague/team`,
+      {
+        method: "PATCH",
+        credentials: "same-origin",
+        body: JSON.stringify({ name, points }),
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+    const data = await response.json();
+  };
+
   render() {
     const { points } = this.state;
-    const { teamData, handleTeamClick } = this.props;
+    const { teamData } = this.props;
     const teamDropDownMenu = teamData.map((team, index) => {
       return (
         <option value={team.name} key={index}>
