@@ -3,7 +3,7 @@ export const getTeamData = async () => {
     "http://localhost:3001/api/v1/longshotleague/teams"
   );
   const teamData = await response.json();
-  teamData.push({ name: " " });
+  teamData.push({ name: "" });
   return teamData;
 };
 

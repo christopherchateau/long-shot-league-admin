@@ -3,28 +3,28 @@ import "./TeamForm.css";
 
 class TeamForm extends Component {
   state = {
-    currentTeamData: "",
+    currentTeamData: [],
     pointsInput: ""
   };
 
   handleInputField = e => {
     this.setState({ pointsInput: e.target.value });
   };
-
+  
   handleToggleSwitch = () => {
     let { currentTeamData } = this.state;
     currentTeamData.is_eliminated = !currentTeamData.is_eliminated;
     this.setState({ currentTeamData });
   };
-
+  
   handleDropDown = team => {
     const currentTeamData = this.props.teamData.find(
       listTeam => listTeam.name === team
-    );
-    this.setState({ currentTeamData });
-  };
-
-  updateTeamData = async () => {
+      );
+      this.setState({ currentTeamData });
+    };
+    
+    updateTeamData = async () => {
     const { currentTeamData, pointsInput } = this.state;
     const response = await fetch(
       `http://localhost:3001/api/v1/longshotleague/team`,
@@ -79,7 +79,11 @@ class TeamForm extends Component {
           />
           <span className="slider" />
         </label>
-        <button className="team-btn" onClick={this.updateTeamData}>
+        <button
+          className="team-btn"
+          onClick={this.updateTeamData}
+          disabled={!pointsInput.length || !currentTeamData.name.length}
+        >
           Sumbit
         </button>
       </div>
