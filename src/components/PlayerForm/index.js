@@ -24,16 +24,17 @@ class PlayerForm extends Component {
   };
 
   submitPlayerData = async () => {
-    console.log(this.state);
-    return;
-    const { currentPlayerData, bonusDescription } = this.state;
+    const { currentPlayerData, bonusDescription, bonusAmount } = this.state;
     const response = await fetch(
-      `http://localhost:3001/api/v1/longshotleague/player`,
+      `http://localhost:3001/api/v1/longshotleague/new_bonus`,
       {
-        method: "PATCH",
+        method: "POST",
         credentials: "same-origin",
         body: JSON.stringify({
-          name: currentPlayerData.name
+          name: currentPlayerData.name,
+          player_id: currentPlayerData.id,
+          description: bonusDescription,
+          points: bonusAmount
         }),
         headers: { "Content-Type": "application/json" }
       }
