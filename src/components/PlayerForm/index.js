@@ -4,7 +4,8 @@ import "./PlayerForm.css";
 class PlayerForm extends Component {
   state = {
     currentPlayerData: [],
-    bonusDescription: ""
+    bonusDescription: "",
+    bonusAmount: 1
   };
 
   handleInputField = e => {
@@ -18,7 +19,13 @@ class PlayerForm extends Component {
     this.setState({ currentPlayerData });
   };
 
+  handleBonusDropDown = bonusAmount => {
+    this.setState({ bonusAmount });
+  };
+
   submitPlayerData = async () => {
+    console.log(this.state);
+    return;
     const { currentPlayerData, bonusDescription } = this.state;
     const response = await fetch(
       `http://localhost:3001/api/v1/longshotleague/player`,
@@ -60,16 +67,17 @@ class PlayerForm extends Component {
       <div className="PlayerForm">
         <select
           className="player-drop-down"
-          ref={input => (this.menu = input)}
-          onChange={() => this.handlePlayerDropDown(this.menu.value)}
+          ref={player => (this.player = player)}
+          value={this.state.currentPlayerData.name}
+          onChange={() => this.handlePlayerDropDown(this.player.value)}
         >
           {teamDropDownMenu}
         </select>
         <select
           className="bonus-drop-down"
-          ref={input => (this.menu = input)}
-          defaultValue={1}
-          onChange={() => this.handleBonusDropDown(this.menu.value)}
+          ref={bonus => (this.bonus = bonus)}
+          value={this.state.bonusAmount}
+          onChange={() => this.handleBonusDropDown(this.bonus.value)}
         >
           {bonusDropDownMenu}
         </select>
