@@ -12,15 +12,15 @@ class Players extends Component {
 
       const playerBonusTotal = bonusData.reduce((total, bonus) => {
         if (bonus.name === player.name) {
-          bonusDataDisplayed.push(<Bonus bonusData={bonus} />);
+          bonusDataDisplayed.push(<Bonus bonusData={bonus} key={bonus.id} />);
           total += bonus.points;
         }
         return +total;
       }, 0);
       return (
         <div className="player" key={player.name}>
-          <h3>{player.name}</h3>
-          <h5>bonus: {playerBonusTotal}</h5>
+          <h3 className="player-name">{`${player.name} - ${playerBonusTotal}`}</h3>
+          <div>{bonusDataDisplayed}</div>
         </div>
       );
     });
