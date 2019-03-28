@@ -16,10 +16,6 @@ class MainPage extends Component {
     this.loadData();
   };
 
-  componentDidUpdate = () => {
-    this.loadData();
-  };
-
   loadData = async () => {
     let teamData = await getTeamData();
     let playerData = await getPlayerData();
@@ -57,8 +53,12 @@ class MainPage extends Component {
             {display}
           </button>
         </div>
-        {display === "players" && <Players playerData={playerData} />}
-        {display === "teams" && <Teams teamData={teamData} />}
+        {display === "players" && (
+          <Players playerData={playerData} loadData={this.loadData} />
+        )}
+        {display === "teams" && (
+          <Teams teamData={teamData} loadData={this.loadData} />
+        )}
       </div>
     );
   }
