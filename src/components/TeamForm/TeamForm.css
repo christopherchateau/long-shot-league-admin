@@ -35,6 +35,11 @@
   transition: all 0.5s ease-out;
 }
 
+.team-btn:disabled {
+  background: rgb(176, 176, 176);
+  cursor: none;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -55,7 +60,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background: rgb(0, 87, 0);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
