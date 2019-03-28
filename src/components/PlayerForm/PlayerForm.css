@@ -1,0 +1,43 @@
+.PlayerForm {
+  align-items: center;
+  background: silver;
+  display: flex;
+  justify-content: space-around;
+  margin: 40px auto;
+  opacity: 0.9;
+  text-align: center;
+  width: 70vw;
+}
+
+.player-drop-down,
+.bonus-drop-down {
+  font-size: 22px;
+}
+
+.bonus-input {
+  font-size: 22px;
+}
+
+.player-btn {
+  background: rgb(84, 84, 84);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
+  margin: 20px;
+  min-height: 50px;
+  padding: 10px 30px;
+  transition: all 0.5s ease-out;
+}
+
+.player-btn:hover {
+  background: rgb(242, 242, 242);
+  color: rgb(84, 84, 84);
+  transition: all 0.5s ease-out;
+}
+
+.player-btn:disabled {
+  background: rgb(176, 176, 176);
+  cursor: none;
+}
+

@@ -9,7 +9,7 @@ class MainPage extends Component {
   state = {
     teamData: [],
     playerData: [],
-    display: "teams"
+    display: "Players"
   };
 
   componentDidMount = () => {
@@ -28,9 +28,9 @@ class MainPage extends Component {
 
   handleToggleBtnClick = () => {
     let display = "";
-    this.state.display === "teams"
-      ? (display = "players")
-      : (display = "teams");
+    this.state.display === "Teams"
+      ? (display = "Players")
+      : (display = "Teams");
     this.setState({ display });
   };
 
@@ -53,10 +53,10 @@ class MainPage extends Component {
             {display}
           </button>
         </div>
-        {display === "players" && (
+        {display === "Players" && (
           <Players playerData={playerData} loadData={this.loadData} />
         )}
-        {display === "teams" && (
+        {display === "Teams" && (
           <Teams teamData={teamData} loadData={this.loadData} />
         )}
       </div>
