@@ -6,7 +6,7 @@ class Players extends Component {
   render() {
     const { playerData, loadData } = this.props;
 
-    const players = this.props.playerData.map(player => (
+    const players = this.props.playerData.slice(1).map(player => (
       <div className="player" key={player.name}>
         <h3>{player.name}</h3>
         <h5>bonus: {player.bonus_points}</h5>

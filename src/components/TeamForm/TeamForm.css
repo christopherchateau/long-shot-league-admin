@@ -18,7 +18,7 @@
 }
 
 .team-btn {
-  background: rgb(84, 84, 84);
+  background: rgb(31, 24, 24);
   border: none;
   color: white;
   cursor: pointer;
@@ -36,8 +36,9 @@
 }
 
 .team-btn:disabled {
+  color: white;
   background: rgb(176, 176, 176);
-  cursor: none;
+  cursor: auto;
 }
 
 .switch {
