@@ -8,7 +8,7 @@ class PlayerForm extends Component {
   };
 
   handleInputField = e => {
-    // this.setState({ pointsInput: e.target.value });
+    this.setState({ bonusDescription: e.target.value });
   };
 
   handleDropDown = team => {
@@ -83,7 +83,7 @@ class PlayerForm extends Component {
         <button
           className="player-btn"
           onClick={this.updateTeamData}
-          disabled={!bonusDescription.length || !currentPlayerData.length} //|| !bonusDropDown.length
+          disabled={!bonusDescription.length}
         >
           Sumbit
         </button>
