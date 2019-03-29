@@ -7,7 +7,7 @@ class Players extends Component {
   render() {
     const { playerData, bonusData, loadData } = this.props;
 
-    const players = this.props.playerData.slice(1).map(player => {
+    const players = playerData.slice(1).map(player => {
       const bonusDataDisplayed = [];
 
       const playerBonusTotal = bonusData.reduce((total, bonus) => {

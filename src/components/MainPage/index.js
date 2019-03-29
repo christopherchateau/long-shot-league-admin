@@ -11,7 +11,7 @@ class MainPage extends Component {
     teamData: [],
     playerData: [],
     bonusData: [],
-    display: "Players"
+    display: "teams"
   };
 
   componentDidMount = () => {
@@ -32,9 +32,9 @@ class MainPage extends Component {
 
   handleToggleBtnClick = () => {
     let display = "";
-    this.state.display === "Teams"
-      ? (display = "Players")
-      : (display = "Teams");
+    this.state.display === "teams"
+      ? (display = "players")
+      : (display = "teams");
     this.setState({ display });
   };
 
@@ -55,14 +55,14 @@ class MainPage extends Component {
         >
           {display}
         </button>
-        {display === "Players" && (
+        {display === "players" && (
           <Players
             playerData={playerData}
             bonusData={bonusData}
             loadData={this.loadData}
           />
         )}
-        {display === "Teams" && (
+        {display === "teams" && (
           <Teams teamData={teamData} loadData={this.loadData} />
         )}
       </div>
