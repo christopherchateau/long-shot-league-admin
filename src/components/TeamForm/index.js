@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { patchTeamData } from "../../apiCalls";
 import "./TeamForm.css";
 
 class TeamForm extends Component {
@@ -26,20 +27,7 @@ class TeamForm extends Component {
 
   submitTeamData = async () => {
     const { currentTeamData, pointsInput } = this.state;
-    const response = await fetch(
-      `http://localhost:3001/api/v1/longshotleague/team`,
-      {
-        method: "PATCH",
-        credentials: "same-origin",
-        body: JSON.stringify({
-          name: currentTeamData.name,
-          points: pointsInput,
-          is_eliminated: currentTeamData.is_eliminated
-        }),
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-    const data = await response.json();
+    await patchTeamData(currentTeamData, pointsInput);
     await this.props.loadData();
   };
 
