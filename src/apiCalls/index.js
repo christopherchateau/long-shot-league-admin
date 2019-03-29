@@ -56,3 +56,15 @@ export const postBonus = async (playerData, description, points) => {
     }
   );
 };
+
+export const deleteBonus = async id => {
+  const response = await fetch(
+    `http://localhost:3001/api/v1/longshotleague/bonus`,
+    {
+      method: "DELETE",
+      credentials: "same-origin",
+      body: JSON.stringify({ id }),
+      headers: { "Content-Type": "application/json" }
+    }
+  );
+};
