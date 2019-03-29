@@ -6,7 +6,7 @@
   text-align: left;
 }
 
-.bonus-delete {
+.bonus-delete-btn {
   border: 1px solid white;
   cursor: pointer;
   font-size: 16px;
@@ -17,7 +17,7 @@
   transition: all 0.5s ease-out;
 }
 
-.bonus-delete:hover {
+.bonus-delete-btn:hover {
   background: white;
   color: rgb(50, 50, 50);
   transition: all 0.5s ease-out;
