@@ -25,7 +25,7 @@ class TeamForm extends Component {
     this.setState({ currentTeamData });
   };
 
-  submitTeamData = async () => {
+  handleSubmit = async () => {
     const { currentTeamData, pointsInput } = this.state;
     await patchTeamData(currentTeamData, pointsInput);
     await this.props.loadData();
@@ -70,7 +70,7 @@ class TeamForm extends Component {
         </label>
         <button
           className="team-btn"
-          onClick={this.submitTeamData}
+          onClick={this.handleSubmit}
           disabled={!pointsInput.length || !currentTeamData.id}
         >
           Sumbit

@@ -24,7 +24,7 @@ class PlayerForm extends Component {
     this.setState({ bonusAmount });
   };
 
-  submitPlayerData = async () => {
+  handleSumbit = async () => {
     const { currentPlayerData, bonusDescription, bonusAmount } = this.state;
     await postBonus(currentPlayerData, bonusDescription, bonusAmount);
     await this.props.loadData();
@@ -78,7 +78,7 @@ class PlayerForm extends Component {
         />
         <button
           className="player-btn"
-          onClick={this.submitPlayerData}
+          onClick={this.handleSumbit}
           disabled={!bonusDescription.length || !currentPlayerData.id}
         >
           Sumbit
