@@ -1,0 +1,20 @@
+.Teams {
+}
+
+.teams-toggle-btn {
+  background: rgb(84, 84, 84);
+  border: 2px solid silver;
+  color: white;
+  cursor: pointer;
+  font-size: 32px;
+  margin-top: 30px;
+  padding: 10px 30px;
+  transition: all 0.5s ease-out;
+  width: 240px;
+}
+
+.teams-toggle-btn:hover {
+  background: rgb(242, 242, 242);
+  color: rgb(84, 84, 84);
+  transition: all 0.5s ease-out;
+}
