@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { postBonus } from "../../apiCalls";
 import "./PlayerForm.css";
 
 class PlayerForm extends Component {
@@ -25,21 +26,7 @@ class PlayerForm extends Component {
 
   submitPlayerData = async () => {
     const { currentPlayerData, bonusDescription, bonusAmount } = this.state;
-    const response = await fetch(
-      `http://localhost:3001/api/v1/longshotleague/new_bonus`,
-      {
-        method: "POST",
-        credentials: "same-origin",
-        body: JSON.stringify({
-          name: currentPlayerData.name,
-          player_id: currentPlayerData.id,
-          description: bonusDescription,
-          points: bonusAmount
-        }),
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-    const data = await response.json();
+    await postBonus(currentPlayerData, bonusDescription, bonusAmount);
     await this.props.loadData();
   };
 
