@@ -38,5 +38,21 @@ export const patchTeamData = async (teamData, points) => {
       headers: { "Content-Type": "application/json" }
     }
   );
-  const data = await response.json();
+};
+
+export const postBonus = async (playerData, description, points) => {
+  const response = await fetch(
+    `http://localhost:3001/api/v1/longshotleague/bonus`,
+    {
+      method: "POST",
+      credentials: "same-origin",
+      body: JSON.stringify({
+        name: playerData.name,
+        player_id: playerData.id,
+        description,
+        points
+      }),
+      headers: { "Content-Type": "application/json" }
+    }
+  );
 };
