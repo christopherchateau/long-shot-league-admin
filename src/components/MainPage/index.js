@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Players from "../Players";
 import Teams from "../Teams";
+import LoadingPage from "../LoadingPage";
 import { getTeamData } from "../../apiCalls";
 import { getPlayerData } from "../../apiCalls";
 import { getBonusData } from "../../apiCalls";
@@ -15,7 +16,7 @@ class MainPage extends Component {
   };
 
   componentDidMount = () => {
-    this.loadData();
+    //this.loadData();
   };
 
   loadData = async () => {
@@ -47,26 +48,34 @@ class MainPage extends Component {
   render() {
     const { playerData, teamData, bonusData, display } = this.state;
 
-    return (
-      <div className="MainPage">
-        <button
-          className="main-page-toggle-btn"
-          onClick={this.handleToggleBtnClick}
-        >
-          {display}
-        </button>
-        {display === "players" && (
-          <Players
-            playerData={playerData}
-            bonusData={bonusData}
-            loadData={this.loadData}
-          />
-        )}
-        {display === "teams" && (
-          <Teams teamData={teamData} loadData={this.loadData} />
-        )}
-      </div>
-    );
+    if (!playerData.length || !teamData.length || !bonusData.length) {
+      return (
+        <div className="MainPage">
+          <LoadingPage />
+        </div>
+      );
+    } else {
+      return (
+        <div className="MainPage">
+          <button
+            className="main-page-toggle-btn"
+            onClick={this.handleToggleBtnClick}
+          >
+            {display}
+          </button>
+          {display === "players" && (
+            <Players
+              playerData={playerData}
+              bonusData={bonusData}
+              loadData={this.loadData}
+            />
+          )}
+          {display === "teams" && (
+            <Teams teamData={teamData} loadData={this.loadData} />
+          )}
+        </div>
+      );
+    }
   }
 }
 

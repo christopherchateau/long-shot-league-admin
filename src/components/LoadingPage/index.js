@@ -6,7 +6,7 @@ class LoadingPage extends Component {
   render() {
     return (
       <div className="LoadingPage">
-asdf
+        <img className="loading-img" src={loadingImg} />
       </div>
     );
   }
