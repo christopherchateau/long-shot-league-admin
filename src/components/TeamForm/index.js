@@ -59,8 +59,7 @@ class TeamForm extends Component {
           onChange={this.handleInputField}
           className="team-input"
           type="number"
-          value={pointsInput}
-          placeholder={pointsInput}
+          placeholder="points"
         />
         <label className="switch">
           <input
