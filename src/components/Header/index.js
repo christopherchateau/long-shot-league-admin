@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import toddImg from "../../images/todd.png";
+import bballImg from "../../images/bball.png";
 import "./Header.css";
 
 class Header extends Component {
@@ -8,7 +8,7 @@ class Header extends Component {
       <div className="Header">
         <h1>
           LONG SH
-          <img className="todd-img" src={toddImg} />
+          <img className="todd-img" src={bballImg} />
           T ADMIN
         </h1>
       </div>

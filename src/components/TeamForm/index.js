@@ -37,7 +37,6 @@ class TeamForm extends Component {
   render() {
     const { currentTeamData, pointsInput } = this.state;
     const { teamData } = this.props;
-
     const teamDropDownMenu = teamData.map((team, index) => {
       return (
         <option value={team.name} key={index}>

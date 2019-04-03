@@ -1,18 +1,18 @@
-@import url("https://fonts.googleapis.com/css?family=Permanent+Marker");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300");
 
 .Header {
   align-items: center;
   background-image: linear-gradient(to right, transparent, silver, silver, transparent);
   display: flex;
-  font-family: "Permanent Marker", cursive;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   justify-content: center;
 }
 
 .todd-img {
-  height: 70px;
+  height: 60px;
   position: relative;
-  top: 12px;
+  top: 10px;
 }
 
 @media screen and (max-width: 760px) {
