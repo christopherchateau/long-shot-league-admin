@@ -6,7 +6,7 @@ class LoadingPage extends Component {
   render() {
     return (
       <div className="LoadingPage">
-        <img className="loading-img" src={loadingImg} />
+        <img className="loading-img" alt="loading" src={loadingImg} />
       </div>
     );
   }
