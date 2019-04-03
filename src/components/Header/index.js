@@ -8,7 +8,7 @@ class Header extends Component {
       <div className="Header">
         <h1>
           LONG SH
-          <img className="todd-img" src={bballImg} />
+          <img className="todd-img" alt="loading" src={bballImg} />
           T ADMIN
         </h1>
       </div>

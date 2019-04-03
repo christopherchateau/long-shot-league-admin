@@ -25,7 +25,7 @@ export const getBonusData = async () => {
 };
 
 export const patchTeamData = async (teamData, points) => {
-  const response = await fetch(
+  await fetch(
     `https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/team`,
     {
       method: "PATCH",
