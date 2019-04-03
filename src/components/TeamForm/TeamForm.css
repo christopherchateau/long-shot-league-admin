@@ -91,3 +91,9 @@ input:checked + .slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
+
+@media screen and (max-width: 1100px) {
+  .TeamForm {
+    width: 90vw;
+  }
+}

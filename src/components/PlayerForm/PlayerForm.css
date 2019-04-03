@@ -42,3 +42,9 @@
   background: rgb(176, 176, 176);
   cursor: auto;
 }
+
+@media screen and (max-width: 1100px) {
+  .PlayerForm {
+    width: 90vw;
+  }
+}
