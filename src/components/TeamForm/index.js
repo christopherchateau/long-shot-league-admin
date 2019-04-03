@@ -5,7 +5,7 @@ import "./TeamForm.css";
 class TeamForm extends Component {
   state = {
     currentTeamData: [],
-    pointsInput: ""
+    pointsInput: "points"
   };
 
   handleInputField = e => {
@@ -22,7 +22,10 @@ class TeamForm extends Component {
     const currentTeamData = this.props.teamData.find(
       team => team.name === name
     );
-    this.setState({ currentTeamData });
+    this.setState({
+      currentTeamData,
+      pointsInput: currentTeamData.points || "points"
+    });
   };
 
   handleSubmit = async () => {
@@ -58,7 +61,7 @@ class TeamForm extends Component {
           className="team-input"
           type="number"
           value={pointsInput}
-          placeholder="points"
+          placeholder={pointsInput}
         />
         <label className="switch">
           <input
