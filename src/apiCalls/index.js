@@ -41,7 +41,7 @@ export const patchTeamData = async (teamData, points) => {
 };
 
 export const postBonus = async (playerData, description, points) => {
-  const response = await fetch(
+  await fetch(
     `https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/bonus`,
     {
       method: "POST",
@@ -58,7 +58,7 @@ export const postBonus = async (playerData, description, points) => {
 };
 
 export const deleteBonus = async id => {
-  const response = await fetch(
+  await fetch(
     `https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/bonus`,
     {
       method: "DELETE",
