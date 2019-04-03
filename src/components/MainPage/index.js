@@ -16,7 +16,7 @@ class MainPage extends Component {
   };
 
   componentDidMount = () => {
-    //this.loadData();
+    this.loadData();
   };
 
   loadData = async () => {
