@@ -97,3 +97,11 @@ input:checked + .slider:before {
     width: 90vw;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .TeamForm {
+    flex-direction: column;
+    height: 300px;
+    width: 70vw;
+  }
+}
