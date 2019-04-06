@@ -6,6 +6,10 @@
   text-align: left;
 }
 
+.bonus-description {
+  font-family: "Roboto", sans-serif;
+}
+
 .bonus-delete-btn {
   border: 1px solid white;
   cursor: pointer;

@@ -18,7 +18,9 @@ class Bonus extends Component {
         >
           X
         </h5>
-        <h5>{`${bonusData.description} (${bonusData.points}pt)`}</h5>
+        <h5 className="bonus-description">{`${bonusData.description} (${
+          bonusData.points
+        }pt)`}</h5>
       </div>
     );
   }
