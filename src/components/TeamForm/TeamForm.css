@@ -105,3 +105,14 @@ input:checked + .slider:before {
     width: 70vw;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .drop-down-menu {
+    font-size: 16px;
+  }
+
+  .team-input {
+    font-size: 26px;
+    width: 100px;
+  }
+}
