@@ -1,16 +1,13 @@
-.TeamForm {
+.TeamModal {
   align-items: center;
-  background: silver;
+  color: white;
   display: flex;
-  justify-content: space-around;
+  flex-direction: 'row';
+  /* justify-content: space-around; */
   margin: 0 auto;
   opacity: 0.9;
   text-align: center;
   width: 70vw;
-}
-
-.drop-down-menu {
-  font-size: 22px;
 }
 
 .team-input {

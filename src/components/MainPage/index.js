@@ -59,6 +59,7 @@ class MainPage extends Component {
 					>
 						{display}
 					</button>
+
 					{display === 'players' && (
 						<Players
 							playerData={playerData}
@@ -66,6 +67,7 @@ class MainPage extends Component {
 							loadData={this.loadData}
 						/>
 					)}
+
 					{display === 'teams' && (
 						<Teams teamData={teamData} loadData={this.loadData} />
 					)}

@@ -1,3 +1,14 @@
+.team {
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+
+.team:hover {
+  text-decoration: underline;
+  opacity: .8;
+  transition: all 0.5s ease-out;
+}
+
 .teams-toggle-btn {
   background: rgb(84, 84, 84);
   border: 2px solid silver;
