@@ -21,9 +21,7 @@ class Players extends Component {
       }, 0);
       return (
         <div className="player" key={player.name}>
-          <h3 className="player-name">{`${
-            player.name
-          } - ${playerBonusTotal}`}</h3>
+          <h3 className="player-name">{`${player.name} - ${playerBonusTotal}`}</h3>
           <div>{bonusDataDisplayed}</div>
         </div>
       );
