@@ -1,9 +1,11 @@
-const endpoint = `${endpoint}/api/v1/longshotleague/players`
+let endpoint 
+// endpoint = 'https://long-shot-league-be.herokuapp.com/'
+endpoint = 'http://localhost:3001'
 
 export const getTeamData = async () => {
 	const response = await fetch(`${endpoint}/api/v1/longshotleague/teams`)
-	const teamData = await response.json()
-	teamData.push({ name: '' })
+  const teamData = await response.json()
+	teamData.push({ name: '' }) //neede?
 	return teamData
 }
 
