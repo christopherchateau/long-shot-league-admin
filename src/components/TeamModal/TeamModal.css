@@ -2,12 +2,30 @@
   align-items: center;
   color: white;
   display: flex;
-  flex-direction: 'row';
-  /* justify-content: space-around; */
+  height: 50vh;
+  flex-direction: column;
+  justify-content: space-evenly;
   margin: 0 auto;
   opacity: 0.9;
   text-align: center;
   width: 70vw;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 32px;
+  /* font-weight: bold; */
+  right: 33vw;
+  position: relative;
+  transition: all 0.5s ease-out;
+}
+
+.close-modal-btn:hover {
+  background: silver;
+  color: black;
+  cursor: pointer;
 }
 
 .team-input {
@@ -39,10 +57,10 @@
 }
 
 .switch {
-  position: relative;
   display: inline-block;
-  width: 60px;
   height: 34px;
+  position: relative;
+  width: 60px;
 }
 
 .switch input {

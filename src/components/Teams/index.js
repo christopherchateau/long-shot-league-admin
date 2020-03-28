@@ -5,7 +5,7 @@ import './Teams.css'
 class Teams extends Component {
 	state = {
 		teamDisplay: 'show all',
-		selectedTeam: false,
+		selectedTeam: false
 	}
 
 	toggleTeamDisplay = () => {
@@ -23,8 +23,10 @@ class Teams extends Component {
 	}
 
 	closeTeamModal = () => {
-		let { showModal } = this.state
-		this.setState({ showModa: !showModal })
+		this.setState({ selectedTeam: false })
+
+		// let { showModal } = this.state
+		// this.setState({ showModal: !showModal })
 	}
 
 	render() {
@@ -53,6 +55,7 @@ class Teams extends Component {
 					<TeamModal
 						team={selectedTeam}
 						loadData={loadData}
+						closeTeamModal={this.closeTeamModal}
 					/>
 				)}
 

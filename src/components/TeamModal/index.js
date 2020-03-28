@@ -3,10 +3,10 @@ import { patchTeamData } from '../../apiCalls'
 import './TeamModal.css'
 
 class TeamModal extends Component {
-	// state = {
-	// 	currentTeamData: null,
-	// 	pointsInput: 'points',
-	// }
+	state = {
+		currentTeamData: null,
+		pointsInput: 'points',
+	}
 
 
 	handleInputField = (e) => {
@@ -17,6 +17,10 @@ class TeamModal extends Component {
 		let { currentTeamData } = this.state
 		currentTeamData.is_eliminated = !currentTeamData.is_eliminated
 		this.setState({ currentTeamData })
+	}
+
+	handleModalCloseClick = () => {
+		this.props.closeTeamModal()
 	}
 
 	// handleDropDown = (name) => {
@@ -41,13 +45,16 @@ class TeamModal extends Component {
 
 		return (
 			<div className={'TeamModal'.concat(team.is_eliminated ? ' red' : ' green')}>
+
+				<button
+					className='close-modal-btn'
+					onClick={this.handleModalCloseClick}
+				>
+					X
+				</button>
+
 				<h1>{team.name}</h1>
-				<input
-					onChange={this.handleInputField}
-					className="team-input"
-					type="number"
-					placeholder="points"
-				/>
+
 				<label className="switch">
 					<input
 						type="checkbox"
@@ -56,6 +63,14 @@ class TeamModal extends Component {
 					/>
 					<span className="slider" />
 				</label>
+
+				<input
+					onChange={this.handleInputField}
+					className="team-input"
+					type="number"
+					placeholder="points"
+				/>
+
 				<button
 					className="team-btn"
 					onClick={this.handleSubmit}
@@ -63,6 +78,7 @@ class TeamModal extends Component {
 				>
 					Sumbit
 				</button>
+
 			</div>
 		)
 	}
