@@ -1,4 +1,4 @@
-import { clean } from './helper.js'
+import { sortData } from './helper.js'
 
 let endpoint
 // endpoint = 'https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/'
@@ -16,9 +16,11 @@ const get = async type => {
 export const getData = async () => {
     try {
         const data = await Promise.all(
-			types.map(type => get(type))
+			types.map(
+                type => get(type)
+            )
         )
-        return clean(data)
+        return sortData(data)
 
     } catch (error) {
         console.error(error)

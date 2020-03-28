@@ -9,20 +9,17 @@ import './MainPage.css'
 export default class MainPage extends Component {
     state = {
         display: 'teams',
-        teamData: [],
-        playerData: [],
-        bonusData: [],
+        data: [],
         errors: [],
     }
 
     componentDidMount = async () => {
         const data = await getData()
         const errors = data.filter(resp => resp.error)
-        const [playerData, teamData, bonusData] = data
 
         errors.length
             ? this.setState({ errors })
-            : this.setState({ playerData, teamData, bonusData })
+            : this.setState({ data })
     }
 
     refreshData = () => this.componentDidMount()
@@ -36,35 +33,31 @@ export default class MainPage extends Component {
     }
 
     render() {
-        const { playerData, teamData, bonusData, display } = this.state
+        const { display, data } = this.state
+        const [playerData, teamData, bonusData] = data
 
-        if (!playerData.length || !teamData.length || !bonusData.length) {
-            return (
-                <div className='MainPage'>
-                    <LoadingPage />
-                </div>
-            )
-        } else {
-            return (
-                <div className='MainPage'>
-                    <button
-                        className='main-page-toggle-btn'
-                        onClick={this.handleToggleBtnClick}
-                    >
-                        {display}
-                    </button>
+        !data.length
+            ? <div className='MainPage'>
+                <LoadingPage />
+            </div>
 
-                    {display === 'players' &&
-                        <Players
-                            {...{ playerData, bonusData, refreshData: this.refreshData }}
-                        />
-                    }
+            : <div className='MainPage'>
+                <button
+                    className='main-page-toggle-btn'
+                    onClick={this.handleToggleBtnClick}
+                >
+                    {display}
+                </button>
 
-                    {display === 'teams' &&
-                        <Teams {...{ teamData, refreshData: this.refreshData }} />
-                    }
-                </div>
-            )
-        }
+                {display === 'players' &&
+                    <Players
+                        {...{ playerData, bonusData, refreshData: this.refreshData }}
+                    />
+                }
+
+                {display === 'teams' &&
+                    <Teams {...{ teamData, refreshData: this.refreshData }} />
+                }
+            </div>
     }
 }
