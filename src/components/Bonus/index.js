@@ -6,7 +6,8 @@ import './Bonus.css'
 export default ({ refreshData, bonus: { id, points, description } }) => {
 	const handleDelete = async id => {
 		await deleteBonus(id)
-		await refreshData()
+		// await refreshData()
+		refreshData()
 	}
 
 	return <div className='Bonus'>
