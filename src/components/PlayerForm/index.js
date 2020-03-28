@@ -1,91 +1,92 @@
-import React, { Component } from "react";
-import { postBonus } from "../../apiCalls";
-import "./PlayerForm.css";
+import React, { Component } from 'react'
+import { postBonus } from '../../apiCalls'
 
-class PlayerForm extends Component {
-  state = {
-    currentPlayerData: [],
-    bonusDescription: "",
-    bonusAmount: 1
-  };
+import './PlayerForm.css'
 
-  handleInputField = e => {
-    this.setState({ bonusDescription: e.target.value });
-  };
+export default class PlayerForm extends Component {
+	state = {
+		currentPlayerData: [],
+		bonusDescription: '',
+		bonusAmount: 1,
+	}
 
-  handlePlayerDropDown = name => {
-    const currentPlayerData = this.props.playerData.find(
-      player => player.name === name
-    );
-    this.setState({ currentPlayerData });
-  };
+	handleInputField = e => {
+		this.setState({ bonusDescription: e.target.value })
+	}
 
-  handleBonusDropDown = bonusAmount => {
-    this.setState({ bonusAmount });
-  };
+	handlePlayerDropDown = name => {
+		const currentPlayerData = this.props.playerData.find(
+			player => player.name === name
+		)
+		this.setState({ currentPlayerData })
+	}
 
-  handleSumbit = async () => {
-    const { currentPlayerData, bonusDescription, bonusAmount } = this.state;
-    await postBonus(currentPlayerData, bonusDescription, bonusAmount);
-    await this.props.refreshData();
-  };
+	handleBonusDropDown = bonusAmount => {
+		this.setState({ bonusAmount })
+	}
 
-  render() {
-    const { currentPlayerData, bonusDescription } = this.state;
-    const { playerData } = this.props;
+	handleSumbit = async () => {
+		const { currentPlayerData, bonusDescription, bonusAmount } = this.state
+		await postBonus(currentPlayerData, bonusDescription, bonusAmount)
+		await this.props.refreshData()
+	}
 
-    const teamDropDownMenu = playerData.map((team, index) => {
-      return (
-        <option value={team.name} key={index}>
-          {team.name}
-        </option>
-      );
-    });
+	render = () => {
+		const { currentPlayerData, bonusDescription } = this.state
+		const { playerData } = this.props
 
-    const bonusDropDownMenu = [];
-    for (let i = -1; i < 3; i++) {
-      bonusDropDownMenu.push(
-        <option value={i} key={i}>
-          {i}
-        </option>
-      );
-    }
+		const teamDropDownMenu = playerData.map((team, index) => {
+			return (
+				<option value={team.name} key={index}>
+					{team.name}
+				</option>
+			)
+		})
 
-    return (
-      <div className="PlayerForm">
-        <select
-          className="player-drop-down"
-          ref={player => (this.player = player)}
-          value={this.state.currentPlayerData.name}
-          onChange={() => this.handlePlayerDropDown(this.player.value)}
-        >
-          {teamDropDownMenu}
-        </select>
-        <select
-          className="bonus-drop-down"
-          ref={bonus => (this.bonus = bonus)}
-          value={this.state.bonusAmount}
-          onChange={() => this.handleBonusDropDown(this.bonus.value)}
-        >
-          {bonusDropDownMenu}
-        </select>
-        <input
-          onChange={this.handleInputField}
-          className="bonus-input"
-          type="text"
-          value={bonusDescription}
-          placeholder="bonus description"
-        />
-        <button
-          className="player-btn"
-          onClick={this.handleSumbit}
-          disabled={!bonusDescription.length || !currentPlayerData.id}
-        >
-          Sumbit
-        </button>
-      </div>
-    );
-  }
+		const bonusDropDownMenu = []
+		for (let i = -1; i < 3; i++) {
+			bonusDropDownMenu.push(
+				<option value={i} key={i}>
+					{i}
+				</option>
+			)
+		}
+
+		return (
+			<div className='PlayerForm'>
+				<select
+					className='player-drop-down'
+					ref={player => (this.player = player)}
+					value={this.state.currentPlayerData.name}
+					onChange={() =>
+						this.handlePlayerDropDown(this.player.value)
+					}
+				>
+					{teamDropDownMenu}
+				</select>
+				<select
+					className='bonus-drop-down'
+					ref={bonus => (this.bonus = bonus)}
+					value={this.state.bonusAmount}
+					onChange={() => this.handleBonusDropDown(this.bonus.value)}
+				>
+					{bonusDropDownMenu}
+				</select>
+				<input
+					onChange={this.handleInputField}
+					className='bonus-input'
+					type='text'
+					value={bonusDescription}
+					placeholder='bonus description'
+				/>
+				<button
+					className='player-btn'
+					onClick={this.handleSumbit}
+					disabled={!bonusDescription.length || !currentPlayerData.id}
+				>
+					Sumbit
+				</button>
+			</div>
+		)
+	}
 }
-
-export default PlayerForm;

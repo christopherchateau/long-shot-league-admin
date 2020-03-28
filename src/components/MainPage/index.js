@@ -5,7 +5,7 @@ import LoadingPage from '../LoadingPage'
 import { getData } from '../../apiCalls'
 import './MainPage.css'
 
-class MainPage extends Component {
+export default class MainPage extends Component {
     state = {
         display: 'teams',
         teamData: [],
@@ -33,16 +33,13 @@ class MainPage extends Component {
     handleToggleBtnClick = () => {
         let display = ''
         this.state.display === 'teams'
-            ? (display = 'players')
-            : (display = 'teams')
+            ? display = 'players'
+            : display = 'teams'
         this.setState({ display })
     }
 
     sortByName = input =>
-        input.sort((a, b) => {
-            if (a.name < b.name) return -1
-            if (a.name > b.name) return 1
-        })
+        input.sort((a, b) => a.name < b.name ? -1 : 1)
 
     render() {
         const { playerData, teamData, bonusData, display } = this.state
@@ -77,5 +74,3 @@ class MainPage extends Component {
         }
     }
 }
-
-export default MainPage

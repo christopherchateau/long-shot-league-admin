@@ -26,7 +26,10 @@ export default ({ playerData, bonusData, refreshData }) => {
 	})
 	return (
 		<div>
-			<PlayerForm playerData={playerData} refreshData={refreshData} />
+			<PlayerForm
+				playerData={[{ name: '' }, ...playerData]}
+				refreshData={refreshData}
+			/>
 			<div className='Players'>{players}</div>
 		</div>
 	)
