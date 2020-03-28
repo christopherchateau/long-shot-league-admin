@@ -36,7 +36,7 @@ class TeamModal extends Component {
 	handleSubmit = async () => {
 		const { currentTeamData, pointsInput } = this.state
     await patchTeamData(currentTeamData, pointsInput)
-		await this.props.loadData()
+		await this.props.refreshData()
 	}
 
 	render() {

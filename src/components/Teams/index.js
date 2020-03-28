@@ -31,7 +31,7 @@ class Teams extends Component {
 
 	render() {
 		const { teamDisplay, selectedTeam } = this.state
-		let { loadData, teamData } = this.props
+		let { refreshData, teamData } = this.props
 
 		if (teamDisplay === 'still alive') {
 			teamData = teamData.filter((team) => !team.is_eliminated)
@@ -54,7 +54,7 @@ class Teams extends Component {
 				{selectedTeam && (
 					<TeamModal
 						team={selectedTeam}
-						loadData={loadData}
+						refreshData={refreshData}
 						closeTeamModal={this.closeTeamModal}
 					/>
 				)}

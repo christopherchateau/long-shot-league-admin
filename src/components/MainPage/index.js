@@ -14,11 +14,8 @@ class MainPage extends Component {
         errors: [],
     }
 
-    componentDidMount = () => this.loadData()
-
-    loadData = async () => {
+    componentDidMount = async () => {
         const data = await getData()
-        console.log(data)
         const errors = data.filter(resp => resp.error)
         const [playerData, teamData, bonusData] = data
 
@@ -30,6 +27,8 @@ class MainPage extends Component {
                   bonusData,
               })
     }
+
+    refreshData = () => this.componentDidMount()
 
     handleToggleBtnClick = () => {
         let display = ''
@@ -66,12 +65,12 @@ class MainPage extends Component {
 
                     {display === 'players' &&
                         <Players
-                            {...{ playerData, bonusData, loadData: this.loadData }}
+                            {...{ playerData, bonusData, refreshData: this.refreshData }}
                         />
                     }
 
                     {display === 'teams' &&
-                        <Teams {...{ teamData, loadData: this.loadData }} />
+                        <Teams {...{ teamData, refreshData: this.refreshData }} />
                     }
                 </div>
             )

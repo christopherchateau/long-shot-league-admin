@@ -1,29 +1,18 @@
-import React, { Component } from "react";
-import { deleteBonus } from "../../apiCalls";
-import "./Bonus.css";
+import React from 'react'
+import { deleteBonus } from '../../apiCalls'
 
-class Bonus extends Component {
-  handleDelete = async id => {
-    await deleteBonus(id);
-    await this.props.loadData();
-  };
+import './Bonus.css'
 
-  render() {
-    const { bonusData } = this.props;
-    return (
-      <div className="Bonus">
-        <h5
-          className="bonus-delete-btn"
-          onClick={() => this.handleDelete(bonusData.id)}
-        >
-          X
-        </h5>
-        <h5 className="bonus-description">{`${bonusData.description} (${
-          bonusData.points
-        }pt)`}</h5>
-      </div>
-    );
-  }
+export default ({ refreshData, bonus: { id, points, description } }) => {
+	const handleDelete = async id => {
+		await deleteBonus(id)
+		await refreshData()
+	}
+
+	return <div className='Bonus'>
+		<h5 className='bonus-delete-btn' onClick={() => handleDelete(id)}>
+			X
+		</h5>
+		<h5 className='bonus-description'>{`${description} (${points}pt)`}</h5>
+	</div>
 }
-
-export default Bonus;

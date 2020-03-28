@@ -27,7 +27,7 @@ class PlayerForm extends Component {
   handleSumbit = async () => {
     const { currentPlayerData, bonusDescription, bonusAmount } = this.state;
     await postBonus(currentPlayerData, bonusDescription, bonusAmount);
-    await this.props.loadData();
+    await this.props.refreshData();
   };
 
   render() {
