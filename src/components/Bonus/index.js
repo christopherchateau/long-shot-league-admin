@@ -1,5 +1,5 @@
 import React from 'react'
-import { deleteBonus } from '../../apiCalls'
+import { deleteBonus } from '../../utilities/apiCalls'
 
 import './Bonus.css'
 

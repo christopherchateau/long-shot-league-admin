@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { patchTeamData } from '../../apiCalls'
+import { patchTeamData } from '../../utilities/apiCalls'
 import './TeamModal.css'
 
 class TeamModal extends Component {

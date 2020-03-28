@@ -1,3 +1,5 @@
+import { clean } from './helper.js'
+
 let endpoint
 // endpoint = 'https://long-shot-league-be.herokuapp.com/api/v1/longshotleague/'
 endpoint = 'http://localhost:3001/api/v1/longshotleague/'
@@ -11,11 +13,13 @@ const get = async type => {
     return await response.json()
 }
 
-export const getData = () => {
+export const getData = async () => {
     try {
-        return Promise.all(
+        const data = await Promise.all(
 			types.map(type => get(type))
-		)
+        )
+        return clean(data)
+
     } catch (error) {
         console.error(error)
     }

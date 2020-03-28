@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Players from '../Players'
 import Teams from '../Teams'
 import LoadingPage from '../LoadingPage'
-import { getData } from '../../apiCalls'
+import { getData } from '../../utilities/apiCalls'
+
 import './MainPage.css'
 
 export default class MainPage extends Component {
@@ -21,11 +22,7 @@ export default class MainPage extends Component {
 
         errors.length
             ? this.setState({ errors })
-            : this.setState({
-                  playerData: this.sortByName(playerData),
-                  teamData: this.sortByName(teamData),
-                  bonusData,
-              })
+            : this.setState({ playerData, teamData, bonusData })
     }
 
     refreshData = () => this.componentDidMount()
@@ -37,9 +34,6 @@ export default class MainPage extends Component {
             : display = 'teams'
         this.setState({ display })
     }
-
-    sortByName = input =>
-        input.sort((a, b) => a.name < b.name ? -1 : 1)
 
     render() {
         const { playerData, teamData, bonusData, display } = this.state

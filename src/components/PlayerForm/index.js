@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { postBonus } from '../../apiCalls'
+import { postBonus } from '../../utilities/apiCalls'
 
 import './PlayerForm.css'
 
