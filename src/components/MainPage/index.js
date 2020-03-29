@@ -32,32 +32,59 @@ export default class MainPage extends Component {
         this.setState({ display })
     }
 
+    get showLoading() {
+        return !this.state.data.length
+    }
+
+    get showErrors() {
+        return this.state.errors.length
+    }
+
+    get showPlayers() {
+        return this.state.display === 'players'
+    }
+
+    get showTeams() {
+        return this.state.display === 'teams'
+    }
+
     render() {
-        const { display, data } = this.state
+        const { display, data, errors } = this.state
         const [playerData, teamData, bonusData] = data
 
-        !data.length
+        return this.showErrors
+
             ? <div className='MainPage'>
-                <LoadingPage />
+                {console.log(errors)}
             </div>
 
-            : <div className='MainPage'>
-                <button
-                    className='main-page-toggle-btn'
-                    onClick={this.handleToggleBtnClick}
-                >
-                    {display}
-                </button>
+            : this.showLoading
 
-                {display === 'players' &&
-                    <Players
-                        {...{ playerData, bonusData, refreshData: this.refreshData }}
-                    />
-                }
+                ? <div className='MainPage'>
+                    <LoadingPage />
+                </div>
 
-                {display === 'teams' &&
-                    <Teams {...{ teamData, refreshData: this.refreshData }} />
-                }
-            </div>
+                : <div className='MainPage'>
+                    <button
+                        className='main-page-toggle-btn'
+                        onClick={this.handleToggleBtnClick}
+                    >
+                        {display}
+                    </button>
+
+                    {this.showPlayers &&
+                        <Players
+                            {...{
+                                playerData,
+                                bonusData,
+                                refreshData: this.refreshData
+                            }}
+                        />
+                    }
+
+                    {this.showTeams &&
+                        <Teams {...{ teamData, refreshData: this.refreshData }} />
+                    }
+                </div>
     }
 }

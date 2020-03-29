@@ -16,9 +16,7 @@ const get = async type => {
 export const getData = async () => {
     try {
         const data = await Promise.all(
-			types.map(
-                type => get(type)
-            )
+			types.map(type => get(type))
         )
         return sortData(data)
 
