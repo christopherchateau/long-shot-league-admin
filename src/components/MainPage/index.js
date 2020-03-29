@@ -38,7 +38,7 @@ export default class MainPage extends Component {
     }
 
     get showErrors() {
-        return true //this.state.errors.length
+        return this.state.errors.length
     }
 
     get showPlayers() {
