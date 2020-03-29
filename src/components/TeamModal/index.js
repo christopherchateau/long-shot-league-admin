@@ -8,7 +8,6 @@ class TeamModal extends Component {
 		pointsInput: 'points',
 	}
 
-
 	handleInputField = (e) => {
 		this.setState({ pointsInput: e.target.value })
 	}
@@ -35,7 +34,7 @@ class TeamModal extends Component {
 
 	handleSubmit = async () => {
 		const { currentTeamData, pointsInput } = this.state
-    await patchTeamData(currentTeamData, pointsInput)
+    	await patchTeamData(currentTeamData, pointsInput)
 		await this.props.refreshData()
 	}
 
@@ -44,7 +43,7 @@ class TeamModal extends Component {
 		const { team } = this.props
 
 		return (
-			<div className={'TeamModal'.concat(team.is_eliminated ? ' red' : ' green')}>
+			<div className={'TeamModal'.concat(team.is_eliminated ? ' redBg' : ' greenBg')}>
 
 				<button
 					className='close-modal-btn'

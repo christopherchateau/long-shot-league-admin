@@ -1,5 +1,6 @@
 .TeamModal {
   align-items: center;
+  background: rgb(77,77,77);
   color: white;
   display: flex;
   height: 50vh;
@@ -7,18 +8,27 @@
   justify-content: space-evenly;
   margin: 0 auto;
   opacity: 0.9;
+  position: relative;
   text-align: center;
   width: 70vw;
+}
+
+.redBg {
+  background: linear-gradient(0deg, rgba(77,77,77,1) 0%, rgba(168,0,0,1) 100%);
+}
+
+.greenBg {
+  background: linear-gradient(0deg, rgba(77,77,77,1) 0%, rgba(0,135,10,1) 100%);
 }
 
 .close-modal-btn {
   background: transparent;
   border: none;
   color: white;
-  font-size: 32px;
-  /* font-weight: bold; */
-  right: 33vw;
-  position: relative;
+  font-size: 3rem;
+  right: 0;
+  position: absolute;
+  top: 0;
   transition: all 0.5s ease-out;
 }
 
