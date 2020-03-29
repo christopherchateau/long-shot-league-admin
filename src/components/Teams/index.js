@@ -1,47 +1,47 @@
 import React, { Component } from 'react'
 import TeamModal from '../TeamModal'
+
 import './Teams.css'
 
-class Teams extends Component {
+export default class Teams extends Component {
 	state = {
-		teamDisplay: 'show all',
-		selectedTeam: false
+		display: 'show all',
+		selectedTeam: null,
 	}
 
-	toggleTeamDisplay = () => {
-		let { teamDisplay } = this.state
+	toggleDisplay = () => {
+		let { display } = this.state
 
-		teamDisplay === 'show all'
-			? (teamDisplay = 'still alive')
-			: (teamDisplay = 'show all')
+		display === 'show all'
+			? (display = 'still alive')
+			: (display = 'show all')
 
-		this.setState({ teamDisplay })
+		this.setState({ display })
 	}
 
-	handleTeamClick = (selectedTeam) => {
+	handleTeamClick = selectedTeam => {
 		this.setState({ selectedTeam })
 	}
 
 	closeTeamModal = () => {
 		this.setState({ selectedTeam: false })
-
-		// let { showModal } = this.state
-		// this.setState({ showModal: !showModal })
 	}
 
 	render() {
-		const { teamDisplay, selectedTeam } = this.state
+		const { display, selectedTeam } = this.state
 		let { refreshData, teamData } = this.props
 
-		if (teamDisplay === 'still alive') {
-			teamData = teamData.filter((team) => !team.is_eliminated)
+		if (display === 'still alive') {
+			teamData = teamData.filter(team => !team.is_eliminated)
 		}
 
-		const teams = teamData.slice(1).map((team) => (
+		const teams = teamData.slice(1).map(team => (
 			<div
-				className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
-        key={team.name}
-        onClick={() => this.handleTeamClick(team)}
+				className={'team'.concat(
+					team.is_eliminated ? ' red' : ' green'
+				)}
+				key={team.name}
+				onClick={() => this.handleTeamClick(team)}
 			>
 				<h3>
 					{team.name} - {team.points}
@@ -53,27 +53,27 @@ class Teams extends Component {
 			<div>
 				{selectedTeam && (
 					<TeamModal
-						team={selectedTeam}
-						refreshData={refreshData}
-						closeTeamModal={this.closeTeamModal}
+						{...{
+							team: selectedTeam,
+							refreshData,
+							closeTeamModal: this.closeTeamModal,
+						}}
 					/>
 				)}
 
 				{!selectedTeam && (
 					<div>
 						<button
-							className="teams-toggle-btn"
-							onClick={this.toggleTeamDisplay}
+							className='teams-toggle-btn'
+							onClick={this.toggleDisplay}
 						>
-							{teamDisplay}
+							{display}
 						</button>
 						<br />
-						<div className="Teams">{teams}</div>
+						<div className='Teams'>{teams}</div>
 					</div>
 				)}
 			</div>
 		)
 	}
 }
-
-export default Teams

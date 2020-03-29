@@ -14,19 +14,18 @@ export const getData = async () => {
 	return sortData(data)
 }
 
-export const patchTeamData = async (teamData, points) => {
+export const patchTeamData = async ({ name, points, is_eliminated }) =>
 	await fetch(`${endpoint}/team`, {
 		method: 'PATCH',
 		headers,
 		body: JSON.stringify({
-			name: teamData.name,
+			name,
 			points,
-			is_eliminated: teamData.is_eliminated,
+			is_eliminated,
 		}),
 	})
-}
 
-export const postBonus = async (playerData, description, points) => {
+export const postBonus = async (playerData, description, points) =>
 	await fetch(`${endpoint}/bonus`, {
 		method: 'POST',
 		headers,
@@ -37,12 +36,10 @@ export const postBonus = async (playerData, description, points) => {
 			points,
 		}),
 	})
-}
 
-export const deleteBonus = async id => {
+export const deleteBonus = async id =>
 	await fetch(`${endpoint}/bonus`, {
 		method: 'DELETE',
 		headers,
 		body: JSON.stringify({ id }),
 	})
-}
