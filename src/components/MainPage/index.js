@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Players from '../Players'
 import Teams from '../Teams'
-import LoadingPage from '../LoadingPage'
+import Loading from '../Loading'
+import Errors from '../Errors'
 import { getData } from '../../utilities/apiCalls'
 
 import './MainPage.css'
@@ -37,7 +38,7 @@ export default class MainPage extends Component {
     }
 
     get showErrors() {
-        return this.state.errors.length
+        return true //this.state.errors.length
     }
 
     get showPlayers() {
@@ -54,15 +55,11 @@ export default class MainPage extends Component {
 
         return this.showErrors
 
-            ? <div className='MainPage'>
-                {console.log(errors)}
-            </div>
+            ? <Errors {...{ errors }} />
 
             : this.showLoading
 
-                ? <div className='MainPage'>
-                    <LoadingPage />
-                </div>
+                ? <Loading />
 
                 : <div className='MainPage'>
                     <button
