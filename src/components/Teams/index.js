@@ -4,10 +4,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 import './Teams.css'
 
 export default class Teams extends Component {
-	state = {
-		display: 'show all',
-		// selectedTeam: null,
-	}
+	state = { display: 'show all' }
 
 	targetElement = null
 
@@ -18,8 +15,8 @@ export default class Teams extends Component {
 		let { display } = this.state
 
 		display === 'show all'
-			? (display = 'still alive')
-			: (display = 'show all')
+			? display = 'still alive'
+			: display = 'show all'
 
 		this.setState({ display })
 	}
@@ -50,29 +47,15 @@ export default class Teams extends Component {
 			</div>
 		))
 
-		return (
-			<div>
-				{/* {selectedTeam && (
-					<TeamModal
-						{...{
-							team: selectedTeam,
-							refreshData,
-							closeTeamModal: this.closeTeamModal,
-						}}
-					/>
-				)} */}
-
-				<div>
-					<button
-						className='toggle-btn'
-						onClick={this.toggleDisplay}
-					>
-						{display}
-					</button>
-					<br />
-					<div className='Teams'>{teams}</div>
-				</div>
-			</div>
-		)
+		return <div>
+			<button
+				className='toggle-btn'
+				onClick={this.toggleDisplay}
+			>
+				{display}
+			</button>
+			<br />
+			<div className='Teams'>{teams}</div>
+		</div>
 	}
 }

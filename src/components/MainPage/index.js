@@ -25,13 +25,13 @@ export default class MainPage extends Component {
 
     render() {
         const { display } = this.state
-        const { showModal, data } = this.props
+        const { data, refreshData, showModal } = this.props
         const [playerData, teamData, bonusData] = data
 
         return <div className='MainPage'>
             <button
                 className='main-page-toggle-btn'
-                onClick={this.showTargetElement}
+                onClick={this.handleToggleBtnClick}
             >
                 {display}
             </button>
@@ -41,13 +41,19 @@ export default class MainPage extends Component {
                     {...{
                         playerData,
                         bonusData,
-                        refreshData: this.refreshData
+                        refreshData
                     }}
                 />
             }
 
             {this.showTeams &&
-                <Teams {...{ teamData, showModal, refreshData: this.refreshData }} />
+                <Teams
+                    {...{
+                        teamData,
+                        showModal,
+                        refreshData
+                    }}
+                />
             }
         </div>
     }
