@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import TeamModal from '../TeamModal'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import './Teams.css'
 
 export default class Teams extends Component {
 	state = {
 		display: 'show all',
-		selectedTeam: null,
+		// selectedTeam: null,
 	}
+
+	targetElement = null
+
+	componentDidMount = () =>
+        this.targetElement = document.querySelector('.MainPage')
 
 	toggleDisplay = () => {
 		let { display } = this.state
@@ -20,16 +25,13 @@ export default class Teams extends Component {
 	}
 
 	handleTeamClick = selectedTeam => {
-		this.setState({ selectedTeam })
-	}
-
-	closeTeamModal = () => {
-		this.setState({ selectedTeam: false })
+		disableBodyScroll(this.targetElement)
+		this.props.showModal(selectedTeam)
 	}
 
 	render() {
-		const { display, selectedTeam } = this.state
-		let { refreshData, teamData } = this.props
+		const { display } = this.state
+		let { teamData } = this.props
 
 		if (display === 'still alive') {
 			teamData = teamData.filter(team => !team.is_eliminated)
@@ -37,9 +39,7 @@ export default class Teams extends Component {
 
 		const teams = teamData.slice(1).map(team => (
 			<div
-				className={'team'.concat(
-					team.is_eliminated ? ' red' : ' green'
-				)}
+				className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
 				key={team.name}
 				onClick={() => this.handleTeamClick(team)}
 			>
@@ -49,9 +49,10 @@ export default class Teams extends Component {
 				<h5>{team.drafted_by}</h5>
 			</div>
 		))
+
 		return (
 			<div>
-				{selectedTeam && (
+				{/* {selectedTeam && (
 					<TeamModal
 						{...{
 							team: selectedTeam,
@@ -59,20 +60,18 @@ export default class Teams extends Component {
 							closeTeamModal: this.closeTeamModal,
 						}}
 					/>
-				)}
+				)} */}
 
-				{!selectedTeam && (
-					<div>
-						<button
-							className='teams-toggle-btn'
-							onClick={this.toggleDisplay}
-						>
-							{display}
-						</button>
-						<br />
-						<div className='Teams'>{teams}</div>
-					</div>
-				)}
+				<div>
+					<button
+						className='toggle-btn'
+						onClick={this.toggleDisplay}
+					>
+						{display}
+					</button>
+					<br />
+					<div className='Teams'>{teams}</div>
+				</div>
 			</div>
 		)
 	}

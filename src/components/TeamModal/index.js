@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { patchTeamData } from '../../utilities/apiCalls'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import './TeamModal.css'
 
@@ -9,20 +10,26 @@ export default class TeamModal extends Component {
 		is_eliminated: this.props.team.is_eliminated,
 	}
 
+	componentDidMount = () =>
+		this.targetElement = document.querySelector('.MainPage')
+
 	handleInputField = e => this.setState({ pointsInput: e.target.value })
 
-	toggleSwitch = () =>
-		this.setState({ is_eliminated: !this.state.is_eliminated }, () =>
+	toggleSwitch = () => {
+		const { is_eliminated } = this.state
+		this.setState({ is_eliminated: !is_eliminated }, () =>
 			this.submit({ close: false })
 		)
+	}
 
 	closeModal = () => {
-		this.props.closeTeamModal()
+		enableBodyScroll(this.targetElement)
+		this.props.showModal(false)
 	}
 
 	submit = async ({ close }) => {
 		const { pointsInput: points, is_eliminated } = this.state
-		const { team: { name } , refreshData } = this.props
+		const { team: { name }, refreshData, } = this.props
 
 		await patchTeamData({ name, points, is_eliminated })
 		await refreshData()
@@ -31,17 +38,20 @@ export default class TeamModal extends Component {
 	}
 
 	render() {
+		console.log(window.scrollY	)
 		const { pointsInput, is_eliminated } = this.state
 		const { name, id } = this.props.team
 
-		return (
+		return <div 
+			className='overlay'
+			style={{ 'top': `${window.scrollY}px` }}
+		>
 			<div
-				className={'TeamModal'.concat(is_eliminated ? ' redBg' : ' greenBg')}
+				className={'TeamModal'.concat(
+					is_eliminated ? ' redBg' : ' greenBg'
+				)}
 			>
-				<button
-					className='close-modal-btn'
-					onClick={this.closeModal}
-				>
+				<button className='close-modal-btn' onClick={this.closeModal}>
 					X
 				</button>
 
@@ -66,11 +76,11 @@ export default class TeamModal extends Component {
 				<button
 					className='team-btn'
 					onClick={() => this.submit({ close: true })}
-					disabled={!pointsInput.length || !id}
+					disabled={!pointsInput.toString().length || !id}
 				>
 					Sumbit
 				</button>
 			</div>
-		)
+		</div>
 	}
 }

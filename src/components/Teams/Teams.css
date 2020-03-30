@@ -1,26 +1,30 @@
 .team {
-  cursor: pointer;
-  transition: all 0.5s ease-out;
+	cursor: pointer;
+	transition: all 0.5s ease-out;
 }
 
 .team:hover {
-  opacity: .8;
-  transition: all 0.3s ease-out;
+	opacity: 0.8;
+	transition: all 0.3s ease-out;
 }
 
-.teams-toggle-btn {
-  background: rgb(84, 84, 84);
-  border: 2px solid silver;
-  color: white;
-  cursor: pointer;
-  font-size: 32px;
-  padding: 10px 30px;
-  transition: all 0.5s ease-out;
-  width: 240px;
+.toggle-btn {
+	background: rgb(84, 84, 84);
+	border: 2px solid silver;
+	color: white;
+	cursor: pointer;
+	font-size: 32px;
+	padding: 10px 30px;
+	transition: all 0.5s ease-out;
+	width: 240px;
 }
 
-.teams-toggle-btn:hover {
-  background: rgb(242, 242, 242);
-  color: rgb(84, 84, 84);
-  transition: all 0.5s ease-out;
+.toggle-btn:hover {
+	background: rgb(242, 242, 242);
+	color: rgb(84, 84, 84);
+	transition: all 0.5s ease-out;
+}
+
+.hidden {
+  opacity: 0;
 }

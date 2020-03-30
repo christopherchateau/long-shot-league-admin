@@ -1,29 +1,11 @@
 import React, { Component } from 'react'
 import Players from '../Players'
 import Teams from '../Teams'
-import Loading from '../Loading'
-import Errors from '../Errors'
-import { getData } from '../../utilities/apiCalls'
 
 import './MainPage.css'
 
 export default class MainPage extends Component {
-    state = {
-        display: 'teams',
-        data: [],
-        errors: [],
-    }
-
-    componentDidMount = async () => {
-        const data = await getData()
-        const errors = data.filter(resp => resp.error)
-
-        errors.length
-            ? this.setState({ errors })
-            : this.setState({ data })
-    }
-
-    refreshData = () => this.componentDidMount()
+    state = { display: 'teams' }
 
     handleToggleBtnClick = () => {
         let display = ''
@@ -31,14 +13,6 @@ export default class MainPage extends Component {
             ? display = 'players'
             : display = 'teams'
         this.setState({ display })
-    }
-
-    get showLoading() {
-        return !this.state.data.length
-    }
-
-    get showErrors() {
-        return this.state.errors.length
     }
 
     get showPlayers() {
@@ -50,38 +24,31 @@ export default class MainPage extends Component {
     }
 
     render() {
-        const { display, data, errors } = this.state
+        const { display } = this.state
+        const { showModal, data } = this.props
         const [playerData, teamData, bonusData] = data
 
-        return this.showErrors
+        return <div className='MainPage'>
+            <button
+                className='main-page-toggle-btn'
+                onClick={this.showTargetElement}
+            >
+                {display}
+            </button>
 
-            ? <Errors {...{ errors }} />
+            {this.showPlayers &&
+                <Players
+                    {...{
+                        playerData,
+                        bonusData,
+                        refreshData: this.refreshData
+                    }}
+                />
+            }
 
-            : this.showLoading
-
-                ? <Loading />
-
-                : <div className='MainPage'>
-                    <button
-                        className='main-page-toggle-btn'
-                        onClick={this.handleToggleBtnClick}
-                    >
-                        {display}
-                    </button>
-
-                    {this.showPlayers &&
-                        <Players
-                            {...{
-                                playerData,
-                                bonusData,
-                                refreshData: this.refreshData
-                            }}
-                        />
-                    }
-
-                    {this.showTeams &&
-                        <Teams {...{ teamData, refreshData: this.refreshData }} />
-                    }
-                </div>
+            {this.showTeams &&
+                <Teams {...{ teamData, showModal, refreshData: this.refreshData }} />
+            }
+        </div>
     }
 }
