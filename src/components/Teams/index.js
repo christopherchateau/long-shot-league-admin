@@ -4,7 +4,10 @@ import { disableBodyScroll } from 'body-scroll-lock'
 import './Teams.css'
 
 export default class Teams extends Component {
-	state = { display: 'show all' }
+	state = {
+		display: 'show all',
+		searchInput: '',
+	}
 
 	targetElement = null
 
@@ -26,15 +29,24 @@ export default class Teams extends Component {
 		this.props.showModal(selectedTeam)
 	}
 
+	handleSearchInput = ({ target }) =>
+		this.setState({ searchInput: target.value })
+
 	render() {
-		const { display } = this.state
+		const { display, searchInput } = this.state
 		let { teamData } = this.props
 
 		if (display === 'still alive') {
-			teamData = teamData.filter(team => !team.is_eliminated)
+			teamData = teamData.filter(({ is_eliminated }) => !is_eliminated)
 		}
 
-		const teams = teamData.slice(1).map(team => (
+		if (searchInput) {
+			teamData = teamData.filter(({ name }) =>
+				name.toLowerCase().includes(searchInput.toLowerCase())
+			)
+		}
+
+		const teams = teamData.map(team => (
 			<div
 				className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
 				key={team.name}
@@ -54,7 +66,8 @@ export default class Teams extends Component {
 					className='search'
 					type='text'
 					placeholder='search'
-					/>
+					value={searchInput}
+				/>
 				<button
 					className='toggle-btn'
 					onClick={this.toggleDisplay}
