@@ -3,6 +3,16 @@
 	transition: all 0.5s ease-out;
 }
 
+.team-controls {
+  align-items: center;
+  background: silver;
+  display: flex;
+  height: 4.8rem;
+  justify-content: space-around;
+  margin: auto;
+  width: 70vw;
+}
+
 .team:hover {
 	opacity: 0.8;
 	transition: all 0.3s ease-out;
@@ -25,6 +35,14 @@
 	transition: all 0.5s ease-out;
 }
 
-.hidden {
-  opacity: 0;
+.search {
+  font-size: 32px;
+  height: 3rem;
+  width: 240px;
+}
+
+@media screen and (max-width: 1100px) {
+	.team-controls {
+		width: 90vw;
+	}
 }

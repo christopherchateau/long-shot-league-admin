@@ -22,8 +22,6 @@ export default class App extends Component {
         errors.length
         ? this.setState({ errors })
         : this.setState({ data })
-        
-        this.targetElement = document.querySelector('.MainPage')
     }
 
     refreshData = () => this.componentDidMount()
@@ -58,8 +56,8 @@ export default class App extends Component {
 	
 			}
 
-			{modalProps
-				&& <TeamModal
+			{modalProps &&
+				<TeamModal
 					{...{
 						team: modalProps,
 						refreshData: this.refreshData,

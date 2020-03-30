@@ -7,7 +7,7 @@ import './MainPage.css'
 export default class MainPage extends Component {
     state = { display: 'teams' }
 
-    handleToggleBtnClick = () => {
+    handleToggleBtn = () => {
         let display = ''
         this.state.display === 'teams'
             ? display = 'players'
@@ -31,7 +31,7 @@ export default class MainPage extends Component {
         return <div className='MainPage'>
             <button
                 className='main-page-toggle-btn'
-                onClick={this.handleToggleBtnClick}
+                onClick={this.handleToggleBtn}
             >
                 {display}
             </button>
@@ -41,7 +41,7 @@ export default class MainPage extends Component {
                     {...{
                         playerData,
                         bonusData,
-                        refreshData
+                        refreshData,
                     }}
                 />
             }
@@ -51,7 +51,7 @@ export default class MainPage extends Component {
                     {...{
                         teamData,
                         showModal,
-                        refreshData
+                        refreshData,
                     }}
                 />
             }

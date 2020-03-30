@@ -48,14 +48,23 @@ export default class Teams extends Component {
 		))
 
 		return <div>
-			<button
-				className='toggle-btn'
-				onClick={this.toggleDisplay}
-			>
-				{display}
-			</button>
-			<br />
+			<div className='team-controls'>
+				<input
+					onChange={this.handleSearchInput}
+					className='search'
+					type='text'
+					placeholder='search'
+					/>
+				<button
+					className='toggle-btn'
+					onClick={this.toggleDisplay}
+					>
+					{display}
+				</button>
+			</div>
+
 			<div className='Teams'>{teams}</div>
+
 		</div>
 	}
 }
