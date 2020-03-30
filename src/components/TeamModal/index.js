@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { patchTeamData } from '../../utilities/apiCalls'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { enableBodyScroll } from 'body-scroll-lock'
 
 import './TeamModal.css'
 
@@ -38,7 +38,6 @@ export default class TeamModal extends Component {
 	}
 
 	render() {
-		console.log(window.scrollY	)
 		const { pointsInput, is_eliminated } = this.state
 		const { name, id } = this.props.team
 

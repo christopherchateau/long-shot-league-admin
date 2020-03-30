@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { disableBodyScroll } from 'body-scroll-lock'
 
 import './Teams.css'
 
@@ -9,7 +9,7 @@ export default class Teams extends Component {
 	targetElement = null
 
 	componentDidMount = () =>
-        this.targetElement = document.querySelector('.MainPage')
+		this.targetElement = document.querySelector('.MainPage')
 
 	toggleDisplay = () => {
 		let { display } = this.state
