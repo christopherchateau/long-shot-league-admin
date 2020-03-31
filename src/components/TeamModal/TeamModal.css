@@ -173,7 +173,7 @@ input:checked + .slider:before {
 
 @media screen and (max-width: 620px) {
 	.TeamModal {
-		height: 80vh;
+		height: 60vh;
 		width: 100vw;
 	}
 
@@ -184,7 +184,7 @@ input:checked + .slider:before {
 		}
 		100% {
 			opacity: 0.95;
-			top: 10vh;
+			top: 5vh;
 		}
 	}
 }
