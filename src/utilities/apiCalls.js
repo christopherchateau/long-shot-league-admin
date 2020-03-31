@@ -1,6 +1,9 @@
 import { sortData } from './helper.js'
 
-let endpoint = 'http://localhost:3001/api/v1/longshotleague' //'https://long-shot-league-be.herokuapp.com/api/v1/longshotleague'
+let endpoint
+// endpoint = 'http://localhost:3001/api/v1/longshotleague'
+endpoint = 'https://long-shot-league-be.herokuapp.com/api/v1/longshotleague'
+
 const types = ['players', 'teams', 'bonus']
 const headers = { 'Content-Type': 'application/json' }
 
