@@ -7,7 +7,7 @@
 
 ### Primary Technologies
 
-- ReactJS
+- React
 - ExpressJS
 - Knex
 - PostgreSQL
@@ -21,7 +21,7 @@
 
 ### Description
 
-The Long Shot League is a fun twist on March Madness that favors those willing to be bold! It was conceived by Todd Blakeman and has traditionally involved a live draft in Denver, CO over the last 7 years. I enjoy participating so much, I decided to make an app! It allows participants to check standings and league details. There's also a separate administrator portal which allows the league commissioner to make customizations. 
+The Long Shot League is a fun twist on March Madness that favors those willing to be bold! It was conceived by Todd Blakeman and has traditionally involved a live draft in Denver, CO over the last 7 years. I enjoy participating so much, I decided to make an app! It allows participants to check standings and league details. There's also a separate administrator portal which allows the league commissioner to make customizations and enter data.
 
 All 64 teams in the the NCAA Men's Basketball Tournament are divvied up by participants by snake draft. We've typically had 16 players, each selecting 4 teams. Points are awarded for each win, including bonus multipliers for higher seeded teams. There are many bonus opportunities along the way, some of which are a little crazy...  just like the tournament!
 
@@ -35,7 +35,7 @@ Eventually I would like the app to fetch tournament data from an outside API in 
 - Long Shot Tier – Seeds 15 & 16
 
 #### Points
-<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/images/points.png" width="600px" />
+<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/assets/images/points.png" width="600px" />
 
 #### Bonus Points:
  - Give two points to a team that overcomes the largest deficit and wins 
@@ -54,19 +54,19 @@ Eventually I would like the app to fetch tournament data from an outside API in 
 
 ### Desktop Screenshots
 
-<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/images/desktop-1.png" width="1000px" />
+<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/assets/images/desktop-1.png" width="1000px" />
 
-<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/images/desktop-2.png" width="1000px" />
+<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/assets/images/desktop-2.png" width="1000px" />
 
-<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/images/desktop-3.png" width="1000px" />
+<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/assets/images/desktop-3.png" width="1000px" />
 
 ### Tablet Screenshot
 
-<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/images/tablet-1.png" width="500px" />
+<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/assets/images/tablet-1.png" width="500px" />
 
 ### Mobile Screenshot
 
-<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/images/phone-1.png" width="300px" />
+<img src="https://github.com/christopherchateau/long-shot-league/blob/master/src/assets/images/phone-1.png" width="300px" />
 
 ### Contributors
-Chris Chateau: [Github](https://github.com/christopherchateau) <br>
+Chris Chateau: [Github](https://github.com/christopherchateau)
