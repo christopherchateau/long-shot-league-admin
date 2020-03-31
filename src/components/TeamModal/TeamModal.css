@@ -171,6 +171,24 @@ input:checked + .slider:before {
 	}
 }
 
+@media screen and (max-width: 620px) {
+	.TeamModal {
+		height: 80vh;
+		width: 100vw;
+	}
+
+	@keyframes modal {
+		0% {
+			opacity: 0;
+			top: 100vh;
+		}
+		100% {
+			opacity: 0.95;
+			top: 10vh;
+		}
+	}
+}
+
 @media screen and (max-width: 500px) {
 	.team-input {
 		font-size: 26px;
