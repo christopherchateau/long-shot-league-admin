@@ -29,9 +29,9 @@ export default class PlayerForm extends Component {
 		const { currentPlayerData, bonusDescription, bonusAmount } = this.state
 
 		await postBonus(currentPlayerData, bonusDescription, bonusAmount)
-		this.setState({ bonusDescription: '' })
-
 		await this.props.refreshData()
+
+		this.setState({ bonusDescription: '' })
 	}
 
 	render = () => {

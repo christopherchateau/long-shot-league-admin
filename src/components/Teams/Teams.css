@@ -4,13 +4,12 @@
 }
 
 .team-controls {
-  align-items: center;
-  background: silver;
-  display: flex;
-  height: 4.8rem;
-  justify-content: space-around;
-  margin: auto;
-  width: 70vw;
+	align-items: center;
+	background: silver;
+	display: flex;
+	justify-content: space-around;
+	margin: auto;
+	width: 70vw;
 }
 
 .team:hover {
@@ -23,10 +22,8 @@
 	border: 2px solid silver;
 	color: white;
 	cursor: pointer;
-	font-size: 32px;
 	padding: 10px 30px;
 	transition: all 0.5s ease-out;
-	width: 240px;
 }
 
 .toggle-btn:hover {
@@ -36,13 +33,29 @@
 }
 
 .search {
-  font-size: 32px;
-  height: 3rem;
-  width: 240px;
+	height: 3rem;
+}
+
+.toggle-btn,
+.search {
+	font-size: 32px;
+	margin: 1rem;
+	width: 15rem;
 }
 
 @media screen and (max-width: 1100px) {
 	.team-controls {
 		width: 90vw;
+	}
+}
+
+@media screen and (max-width: 620px) {
+	.team-controls {
+		flex-direction: column;
+	}
+
+	.toggle-btn,
+	.search {
+		width: 80%;
 	}
 }

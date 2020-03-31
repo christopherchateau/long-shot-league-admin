@@ -1,27 +1,47 @@
 .overlay {
-  height: 100vh;
-  width: 100vw;
-  background: rgb(218, 218, 218);
-  opacity: 0.96;
-  position: absolute;
+	animation: overlay 0.4s ease-in-out forwards;
+	background: rgb(218, 218, 218);
+	height: 100vh;
+	position: absolute;
+	width: 100vw;
+}
+
+@keyframes overlay {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0.95;
+	}
 }
 
 .TeamModal {
 	align-items: center;
+	animation: modal .6s ease-in-out forwards;
 	background: rgb(77, 77, 77);
 	color: white;
 	display: flex;
 	height: 50vh;
 	flex-direction: column;
 	justify-content: space-evenly;
-  left: 0;
+	left: 0;
 	margin: 0 auto;
 	position: absolute;
-  right: 0;
-  text-align: center;
-  top: 25vh;
-  width: 40rem;
-  z-index: 10;
+	right: 0;
+	text-align: center;
+	width: 40rem;
+	z-index: 10;
+}
+
+@keyframes modal {
+	0% {
+		opacity: 0;
+		top: 100vh;
+	}
+	100% {
+		opacity: 0.95;
+		top: 25vh;
+	}
 }
 
 .redBg {
