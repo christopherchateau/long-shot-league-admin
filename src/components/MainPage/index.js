@@ -7,9 +7,13 @@ import './MainPage.css'
 
 const MainPage = ({
 	data,
-	data: [playerData, teamData, bonusData],
-	loadData: refreshData,
+    data: [
+        playerData,
+        teamData,
+        bonusData
+    ],
 	showModal,
+	loadData: refreshData,
 }) => {
 	const [display, setDisplay] = useState('teams')
 	const [errors, setErrors] = useState([])
@@ -35,22 +39,16 @@ const MainPage = ({
 
 			{display === 'players' &&
 				<Players
-					{...{
-						playerData,
-						bonusData,
-						refreshData,
-					}}
+					{...{ playerData, bonusData, refreshData }}
 				/>
 			}
 
 			{display === 'teams' &&
 				<Teams
-					{...{
-						teamData,
-						showModal,
-					}}
+					{...{ teamData, showModal }}
 				/>
 			}
+
 		</div>
 }
 

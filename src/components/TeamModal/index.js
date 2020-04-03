@@ -1,56 +1,47 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import { patchTeamData } from '../../utilities/apiCalls'
 import { enableBodyScroll } from 'body-scroll-lock'
 
 import './TeamModal.css'
 
-export default class TeamModal extends Component {
-	state = {
-		pointsInput: this.props.team.points,
-		is_eliminated: this.props.team.is_eliminated,
+const TeamModal = ({
+	team: { id, name, points, is_eliminated },
+	showModal,
+	loadData: refreshData,
+}) => {
+	const [pointsInput, setPointsInput] = useState(points)
+	const [isEliminated, setIsEliminated] = useState(is_eliminated)
+	const targetElement = document.querySelector('.MainPage')
+
+	useEffect(() => { submit() }, [isEliminated])
+
+	const handleInputField = e => setPointsInput(e.target.value)
+
+	const toggleSwitch = () => setIsEliminated(!isEliminated)
+
+	const closeModal = () => {
+		enableBodyScroll(targetElement)
+		showModal(false)
 	}
 
-	componentDidMount = () =>
-		this.targetElement = document.querySelector('.MainPage')
+	const validateInput = input => !input.toString().length
 
-	handleInputField = e => this.setState({ pointsInput: e.target.value })
+	const submit = async () => {
+		await patchTeamData({
+			name,
+			points: pointsInput,
+			is_eliminated: isEliminated,
+		})
 
-	toggleSwitch = () => {
-		const { is_eliminated } = this.state
-		this.setState({ is_eliminated: !is_eliminated }, () =>
-			this.submit({ close: false })
-		)
-	}
-
-	closeModal = () => {
-		enableBodyScroll(this.targetElement)
-		this.props.showModal(false)
-	}
-
-	submit = async ({ close }) => {
-		const { pointsInput: points, is_eliminated } = this.state
-		const { team: { name }, refreshData, } = this.props
-
-		await patchTeamData({ name, points, is_eliminated })
 		await refreshData()
-
-		if (close) this.closeModal()
 	}
 
-	render() {
-		const { pointsInput, is_eliminated } = this.state
-		const { name, id } = this.props.team
-
-		return <div 
-			className='overlay'
-			style={{ 'top': `${window.scrollY}px` }}
-		>
+	return (
+		<div className='overlay' style={{ top: `${window.scrollY}px` }}>
 			<div
-				className={'TeamModal'.concat(
-					is_eliminated ? ' redBg' : ' greenBg'
-				)}
+				className={'TeamModal'.concat(isEliminated ? ' redBg' : ' greenBg')}
 			>
-				<button className='close-modal-btn' onClick={this.closeModal}>
+				<button className='close-modal-btn' onClick={closeModal}>
 					X
 				</button>
 
@@ -59,14 +50,14 @@ export default class TeamModal extends Component {
 				<label className='switch'>
 					<input
 						type='checkbox'
-						checked={is_eliminated}
-						onChange={this.toggleSwitch}
+						checked={isEliminated}
+						onChange={toggleSwitch}
 					/>
 					<span className='slider' />
 				</label>
 
 				<input
-					onChange={this.handleInputField}
+					onChange={handleInputField}
 					className='team-input'
 					type='number'
 					value={pointsInput}
@@ -74,12 +65,17 @@ export default class TeamModal extends Component {
 
 				<button
 					className='team-btn'
-					onClick={() => this.submit({ close: true })}
-					disabled={!pointsInput.toString().length || !id}
+					disabled={validateInput(pointsInput) || !id}
+					onClick={() => {
+						submit()
+						closeModal()
+					}}
 				>
 					Sumbit
 				</button>
 			</div>
 		</div>
-	}
+	)
 }
+
+export default TeamModal

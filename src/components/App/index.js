@@ -27,7 +27,7 @@ const App = () => {
 				: <MainPage {...{ data, showModal, loadData }} />
 			}
 
-			{modalProps && <TeamModal {...{ team: modalProps, showModal, refreshData: loadData }} />}{' '}
+			{modalProps && <TeamModal {...{ team: modalProps, showModal, loadData }} />}{' '}
 		</div>
 	)
 }
