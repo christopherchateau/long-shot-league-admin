@@ -7,7 +7,7 @@
 	align-items: center;
 	background: silver;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-evenly;
 	margin: auto;
 	width: 70vw;
 }
@@ -40,7 +40,7 @@
 .search {
 	font-size: 32px;
 	margin: 1rem;
-	width: 15rem;
+	width: 33%;
 }
 
 @media screen and (max-width: 1100px) {

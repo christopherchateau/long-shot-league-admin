@@ -57,10 +57,10 @@ const TeamModal = ({
 				</label>
 
 				<input
-					onChange={handleInputField}
 					className='team-input'
 					type='number'
 					value={pointsInput}
+					onChange={handleInputField}
 				/>
 
 				<button
