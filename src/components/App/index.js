@@ -1,70 +1,35 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../Header'
 import MainPage from '../MainPage'
 import TeamModal from '../TeamModal'
-import Errors from '../Errors'
 import Loading from '../Loading'
 import { getData } from '../../utilities/apiCalls'
 
 import './App.css'
 
-export default class App extends Component {
-	state = { 
-		data: [],
-		errors: [],
-		modalProps: false,
-	}
+const App = () => {
+	const [data, setData] = useState(null)
+	const [modalProps, setModalProps] = useState(null)
 
-    componentDidMount = async () => {
-        const data = await getData()
-        const errors = data.filter(resp => resp.error)
-        
-        errors.length
-        ? this.setState({ errors })
-        : this.setState({ data })
-    }
+	useEffect(() => { loadData() }, [])
 
-    refreshData = () => this.componentDidMount()
+	const loadData = async () => setData( await getData())
 
-	showModal = modalProps => this.setState({ modalProps })
+	const showModal = modalProps => setModalProps(modalProps)
 
-	get showLoading() {
-        return !this.state.data.length
-    }
+	return (
+		<div className='App'>
 
-    get showErrors() {
-        return this.state.errors.length
-	}
-
-	render = () => {
-		const { data, errors, modalProps } = this.state
-
-		return <div className='App'>
 			<Header />
-
-			{this.showErrors ? <Errors {...{ errors }} />
-				
-				: this.showLoading ? <Loading />
-					
-					: <MainPage 
-						{...{
-							data,
-							refreshData: this.refreshData,
-							showModal: this.showModal
-						}}
-					/>
-	
+			
+			{!data
+				? <Loading />
+				: <MainPage {...{ data, showModal, loadData }} />
 			}
 
-			{modalProps &&
-				<TeamModal
-					{...{
-						team: modalProps,
-						refreshData: this.refreshData,
-						showModal: this.showModal,
-					}}
-				/>
-			}
+			{modalProps && <TeamModal {...{ team: modalProps, showModal, refreshData: loadData }} />}{' '}
 		</div>
-	}
+	)
 }
+
+export default App

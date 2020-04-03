@@ -1,60 +1,57 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
+import Errors from '../Errors'
 import Players from '../Players'
 import Teams from '../Teams'
 
 import './MainPage.css'
 
-export default class MainPage extends Component {
-    state = { display: 'teams' }
+const MainPage = ({
+	data,
+	data: [playerData, teamData, bonusData],
+	loadData: refreshData,
+	showModal,
+}) => {
+	const [display, setDisplay] = useState('teams')
+	const [errors, setErrors] = useState([])
 
-    handleToggleBtn = () => {
-        let display = ''
-        this.state.display === 'teams'
-            ? display = 'players'
-            : display = 'teams'
-        this.setState({ display })
-    }
+	useEffect(() => {
+		setErrors(data.filter(resp => resp.error))
+	}, [])
 
-    get showPlayers() {
-        return this.state.display === 'players'
-    }
+	const handleToggleBtn = () =>
+		display === 'teams' ? setDisplay('players') : setDisplay('teams')
 
-    get showTeams() {
-        return this.state.display === 'teams'
-    }
+	const toggleBtn = (
+		<button className='main-page-toggle-btn' onClick={handleToggleBtn}>
+			{display}
+		</button>
+	)
 
-    render() {
-        const { display } = this.state
-        const { data, refreshData, showModal } = this.props
-        const [playerData, teamData, bonusData] = data
+    return errors.length
+        ? <Errors {...{ errors }} />
+        : <div className='MainPage'>
 
-        return <div className='MainPage'>
-            <button
-                className='main-page-toggle-btn'
-                onClick={this.handleToggleBtn}
-            >
-                {display}
-            </button>
+			{toggleBtn}
 
-            {this.showPlayers &&
-                <Players
-                    {...{
-                        playerData,
-                        bonusData,
-                        refreshData,
-                    }}
-                />
-            }
+			{display === 'players' &&
+				<Players
+					{...{
+						playerData,
+						bonusData,
+						refreshData,
+					}}
+				/>
+			}
 
-            {this.showTeams &&
-                <Teams
-                    {...{
-                        teamData,
-                        showModal,
-                        refreshData,
-                    }}
-                />
-            }
-        </div>
-    }
+			{display === 'teams' &&
+				<Teams
+					{...{
+						teamData,
+						showModal,
+					}}
+				/>
+			}
+		</div>
 }
+
+export default MainPage
