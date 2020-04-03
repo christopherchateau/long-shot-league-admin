@@ -4,8 +4,8 @@ import { disableBodyScroll } from 'body-scroll-lock'
 import './Teams.css'
 
 const Teams = ({ teamData, showModal }) => {
-	const [display, setDisplay] = useState()
-	const [searchInput, setSearchInput] = useState()
+	const [display, setDisplay] = useState('show all')
+	const [searchInput, setSearchInput] = useState('')
 	const targetElement = document.querySelector('.MainPage')
 
 	const toggleDisplay = () =>

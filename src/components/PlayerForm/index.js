@@ -7,7 +7,9 @@ const PlayerForm = ({ refreshData, playerData }) => {
 	const [currentPlayerData, setCurrentPlayerData] = useState([])
 	const [bonusDescription, setBonusDescription] = useState('')
 	const [bonusAmount, setBonusAmount] = useState(1)
+
 	const playerDropDownRef = useRef()
+	const bonusDropDownRef = useRef()
 
 	const handleInputField = e => {
 		setBonusDescription(e.target.value)
@@ -55,19 +57,19 @@ const PlayerForm = ({ refreshData, playerData }) => {
 					ref={playerDropDownRef}
 					value={currentPlayerData.name}
 					onChange={() =>
-						handlePlayerDropDown(playerDropDownRef.value)
+						handlePlayerDropDown(playerDropDownRef.current.value)
 					}
 				>
 					{teamDropDownMenu}
 				</select>
-				{/* <select
+				<select
 					className='bonus-drop-down'
-					ref={bonus => (this.bonus = bonus)}
+					ref={bonusDropDownRef}
 					value={bonusAmount}
-					onChange={() => handleBonusDropDown(bonus.value)}
+					onChange={() => handleBonusDropDown(bonusDropDownRef.current.value)}
 				>
 					{bonusDropDownMenu}
-				</select> */}
+				</select>
 				<input
 					onChange={handleInputField}
 					className='bonus-input'
