@@ -1,83 +1,67 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { disableBodyScroll } from 'body-scroll-lock'
 
 import './Teams.css'
 
-export default class Teams extends Component {
-	state = {
-		display: 'show all',
-		searchInput: '',
-	}
+const Teams = ({ teamData, showModal }) => {
+	const [display, setDisplay] = useState()
+	const [searchInput, setSearchInput] = useState()
+	const targetElement = document.querySelector('.MainPage')
 
-	targetElement = null
-
-	componentDidMount = () =>
-		this.targetElement = document.querySelector('.MainPage')
-
-	toggleDisplay = () => {
-		let { display } = this.state
-
+	const toggleDisplay = () =>
 		display === 'show all'
-			? display = 'still alive'
-			: display = 'show all'
+			? setDisplay('still alive')
+			: setDisplay('show all')
 
-		this.setState({ display })
+	const handleTeamClick = selectedTeam => {
+		disableBodyScroll(targetElement)
+		showModal(selectedTeam)
 	}
 
-	handleTeamClick = selectedTeam => {
-		disableBodyScroll(this.targetElement)
-		this.props.showModal(selectedTeam)
+	const handleSearchInput = ({ target }) => setSearchInput(target.value)
+
+	if (display === 'still alive') {
+		teamData = teamData.filter(({ is_eliminated }) => !is_eliminated)
 	}
 
-	handleSearchInput = ({ target }) =>
-		this.setState({ searchInput: target.value })
+	if (searchInput) {
+		teamData = teamData.filter(({ name }) =>
+			name.toLowerCase().includes(searchInput.toLowerCase())
+		)
+	}
 
-	render() {
-		const { display, searchInput } = this.state
-		let { teamData } = this.props
+	const teams = teamData.map(team => (
+		<div
+			className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
+			key={team.name}
+			onClick={() => handleTeamClick(team)}
+		>
+			<h3>
+				{team.name} - {team.points}
+			</h3>
+			<h5>{team.drafted_by}</h5>
+		</div>
+	))
 
-		if (display === 'still alive') {
-			teamData = teamData.filter(({ is_eliminated }) => !is_eliminated)
-		}
-
-		if (searchInput) {
-			teamData = teamData.filter(({ name }) =>
-				name.toLowerCase().includes(searchInput.toLowerCase())
-			)
-		}
-
-		const teams = teamData.map(team => (
-			<div
-				className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
-				key={team.name}
-				onClick={() => this.handleTeamClick(team)}
-			>
-				<h3>
-					{team.name} - {team.points}
-				</h3>
-				<h5>{team.drafted_by}</h5>
-			</div>
-		))
-
-		return <div>
+	return (
+		<div>
 			<div className='team-controls'>
 				<input
-					onChange={this.handleSearchInput}
 					className='search'
-					type='text'
 					placeholder='search'
+					type='text'
 					value={searchInput}
+					onChange={handleSearchInput}
 				/>
-				<button
-					className='toggle-btn'
-					onClick={this.toggleDisplay}
-					>
+
+				<button className='toggle-btn' onClick={toggleDisplay}>
 					{display}
 				</button>
 			</div>
 
 			<div className='Teams'>{teams}</div>
-
 		</div>
-	}
+	)
 }
+
+export default Teams
