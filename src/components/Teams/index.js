@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { DataContext } from '../../contexts/DataContext'
 import { disableBodyScroll } from 'body-scroll-lock'
 
 import './Teams.css'
 
-const Teams = ({ teamData, showModal }) => {
+const Teams = () => {
+	let {
+		data: [, teamData],
+	} = useContext(DataContext)
+
 	const [display, setDisplay] = useState('show all')
 	const [searchInput, setSearchInput] = useState('')
 	const targetElement = document.querySelector('.MainPage')
@@ -15,7 +20,7 @@ const Teams = ({ teamData, showModal }) => {
 
 	const handleTeamClick = selectedTeam => {
 		disableBodyScroll(targetElement)
-		showModal(selectedTeam)
+		// showModal(selectedTeam)
 	}
 
 	const handleSearchInput = ({ target }) => setSearchInput(target.value)

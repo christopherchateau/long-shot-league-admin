@@ -1,26 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import Errors from '../Errors'
+import React, { useState } from 'react'
 import Players from '../Players'
 import Teams from '../Teams'
 
 import './MainPage.css'
 
-const MainPage = ({
-	data,
-    data: [
-        playerData,
-        teamData,
-        bonusData
-    ],
-	showModal,
-	loadData: refreshData,
-}) => {
+const MainPage = () => {
 	const [display, setDisplay] = useState('teams')
-	const [errors, setErrors] = useState([])
-
-	useEffect(() => {
-		setErrors(data.filter(resp => resp.error))
-	}, [])
 
 	const handleToggleBtn = () =>
 		display === 'teams' ? setDisplay('players') : setDisplay('teams')
@@ -30,26 +15,15 @@ const MainPage = ({
 			{display}
 		</button>
 	)
-
-    return errors.length
-        ? <Errors {...{ errors }} />
-        : <div className='MainPage'>
-
+	return (
+		<div className='MainPage'>
 			{toggleBtn}
 
-			{display === 'players' &&
-				<Players
-					{...{ playerData, bonusData, refreshData }}
-				/>
-			}
+			{display === 'players' && <Players />}
 
-			{display === 'teams' &&
-				<Teams
-					{...{ teamData, showModal }}
-				/>
-			}
-
+			{display === 'teams' && <Teams />}
 		</div>
+	)
 }
 
 export default MainPage

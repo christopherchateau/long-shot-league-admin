@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DataContext } from '../../contexts/DataContext'
 import Bonus from '../Bonus'
 import PlayerForm from '../PlayerForm'
 
 import './Players.css'
 
-export default ({ playerData, bonusData, refreshData }) => {
+const Players = () => {
+	let {
+		refreshData,
+		data: [playerData, , bonusData],
+	} = useContext(DataContext)
+
 	const players = playerData.map(player => {
 		const bonusDataDisplayed = []
 
@@ -26,11 +32,10 @@ export default ({ playerData, bonusData, refreshData }) => {
 	})
 	return (
 		<div>
-			<PlayerForm
-				playerData={[{ name: '' }, ...playerData]}
-				refreshData={refreshData}
-			/>
+			<PlayerForm />
 			<div className='Players'>{players}</div>
 		</div>
 	)
 }
+
+export default Players

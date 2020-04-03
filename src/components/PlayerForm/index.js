@@ -1,9 +1,15 @@
-import React, { useState, useRef } from 'react'
+import React, { useContext, useState, useRef } from 'react'
+import { DataContext } from '../../contexts/DataContext'
 import { postBonus } from '../../utilities/apiCalls'
 
 import './PlayerForm.css'
 
-const PlayerForm = ({ refreshData, playerData }) => {
+const PlayerForm = () => {
+	const {
+		refreshData,
+		data: [playerData],
+	} = useContext(DataContext)
+
 	const [currentPlayerData, setCurrentPlayerData] = useState([])
 	const [bonusDescription, setBonusDescription] = useState('')
 	const [bonusAmount, setBonusAmount] = useState(1)
@@ -33,60 +39,66 @@ const PlayerForm = ({ refreshData, playerData }) => {
 		setBonusDescription('')
 	}
 
-		const teamDropDownMenu = playerData.map((team, index) => {
+	const teamDropDownMenu = [{ name: '' }, ...playerData].map(
+		(team, index) => {
 			return (
 				<option value={team.name} key={index}>
 					{team.name}
 				</option>
 			)
-		})
-
-		const bonusDropDownMenu = []
-		for (let i = -1; i < 3; i++) {
-			bonusDropDownMenu.push(
-				<option value={i} key={i}>
-					{i}
-				</option>
-			)
 		}
+	)
 
-		return (
-			<div className='PlayerForm'>
-				<select
-					className='player-drop-down'
-					ref={playerDropDownRef}
-					value={currentPlayerData.name}
-					onChange={() =>
-						handlePlayerDropDown(playerDropDownRef.current.value)
-					}
-				>
-					{teamDropDownMenu}
-				</select>
-				<select
-					className='bonus-drop-down'
-					ref={bonusDropDownRef}
-					value={bonusAmount}
-					onChange={() => handleBonusDropDown(bonusDropDownRef.current.value)}
-				>
-					{bonusDropDownMenu}
-				</select>
-				<input
-					onChange={handleInputField}
-					className='bonus-input'
-					type='text'
-					value={bonusDescription}
-					placeholder='bonus description'
-				/>
-				<button
-					className='player-btn'
-					onClick={handleSumbit}
-					disabled={!bonusDescription.length || !currentPlayerData.id}
-				>
-					Sumbit
-				</button>
-			</div>
+	const bonusDropDownMenu = []
+	for (let i = -1; i < 3; i++) {
+		bonusDropDownMenu.push(
+			<option value={i} key={i}>
+				{i}
+			</option>
 		)
 	}
 
+	return (
+		<div className='PlayerForm'>
+			<select
+				className='player-drop-down'
+				ref={playerDropDownRef}
+				value={currentPlayerData.name}
+				onChange={() =>
+					handlePlayerDropDown(playerDropDownRef.current.value)
+				}
+			>
+				{teamDropDownMenu}
+			</select>
+
+			<select
+				className='bonus-drop-down'
+				ref={bonusDropDownRef}
+				value={bonusAmount}
+				onChange={() =>
+					handleBonusDropDown(bonusDropDownRef.current.value)
+				}
+			>
+				{bonusDropDownMenu}
+			</select>
+
+			<input
+				onChange={handleInputField}
+				className='bonus-input'
+				type='text'
+				value={bonusDescription}
+				placeholder='bonus description'
+			/>
+
+			<button
+				className='player-btn'
+				onClick={handleSumbit}
+				disabled={!bonusDescription.length || !currentPlayerData.id}
+			>
+				Sumbit
+			</button>
+		</div>
+	)
+}
 
 export default PlayerForm

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import { DataContext } from '../../contexts/DataContext'
 import { patchTeamData } from '../../utilities/apiCalls'
 import { enableBodyScroll } from 'body-scroll-lock'
 
@@ -7,13 +8,16 @@ import './TeamModal.css'
 const TeamModal = ({
 	team: { id, name, points, is_eliminated },
 	showModal,
-	loadData: refreshData,
 }) => {
+	const { refreshData } = useContext(DataContext)
+
 	const [pointsInput, setPointsInput] = useState(points)
 	const [isEliminated, setIsEliminated] = useState(is_eliminated)
 	const targetElement = document.querySelector('.MainPage')
 
-	useEffect(() => { submit() }, [isEliminated])
+	useEffect(() => {
+		submit()
+	}, [isEliminated])
 
 	const handleInputField = e => setPointsInput(e.target.value)
 
@@ -39,7 +43,9 @@ const TeamModal = ({
 	return (
 		<div className='overlay' style={{ top: `${window.scrollY}px` }}>
 			<div
-				className={'TeamModal'.concat(isEliminated ? ' redBg' : ' greenBg')}
+				className={'TeamModal'.concat(
+					isEliminated ? ' redBg' : ' greenBg'
+				)}
 			>
 				<button className='close-modal-btn' onClick={closeModal}>
 					X
