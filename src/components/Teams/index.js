@@ -5,13 +5,14 @@ import { disableBodyScroll } from 'body-scroll-lock'
 import './Teams.css'
 
 const Teams = () => {
-	let {
+	const {
 		data: [, teamData],
 		setModalProps,
 	} = useContext(DataContext)
 
 	const [display, setDisplay] = useState('show all')
 	const [searchInput, setSearchInput] = useState('')
+
 	const targetElement = document.querySelector('.MainPage')
 
 	const toggleDisplay = () =>
@@ -26,17 +27,19 @@ const Teams = () => {
 
 	const handleSearchInput = ({ target }) => setSearchInput(target.value)
 
+	let filteredTeams = teamData
+
 	if (display === 'still alive') {
-		teamData = teamData.filter(({ is_eliminated }) => !is_eliminated)
+		filteredTeams = filteredTeams.filter(({ is_eliminated }) => !is_eliminated)
 	}
 
 	if (searchInput) {
-		teamData = teamData.filter(({ name }) =>
+		filteredTeams = filteredTeams.filter(({ name }) =>
 			name.toLowerCase().includes(searchInput.toLowerCase())
 		)
 	}
 
-	const teams = teamData.map(team => (
+	const teams = filteredTeams.map(team => (
 		<div
 			className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
 			key={team.name}

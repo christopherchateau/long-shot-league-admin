@@ -7,9 +7,7 @@ const DataContextProvider = props => {
 	const [data, setData] = useState(null)
 	const [modalProps, setModalProps] = useState(null)
 
-	useEffect(() => {
-		loadData()
-	}, [])
+	useEffect(() => { loadData() }, [])
 
 	const loadData = async () => {
 		setData(await getData())

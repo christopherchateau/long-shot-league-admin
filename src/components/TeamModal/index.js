@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { DataContext } from '../../contexts/DataContext'
 import { patchTeamData } from '../../utilities/apiCalls'
+import { validatePtsInput as validate } from '../../utilities/helper'
 import { enableBodyScroll } from 'body-scroll-lock'
 
 import './TeamModal.css'
@@ -14,11 +15,10 @@ const TeamModal = () => {
 
 	const [pointsInput, setPointsInput] = useState(points)
 	const [isEliminated, setIsEliminated] = useState(is_eliminated)
+
 	const targetElement = document.querySelector('.MainPage')
 
-	useEffect(() => {
-		submit()
-	}, [isEliminated])
+	useEffect(() => { submit() }, [isEliminated])
 
 	const handleInputField = e => setPointsInput(e.target.value)
 
@@ -28,8 +28,6 @@ const TeamModal = () => {
 		enableBodyScroll(targetElement)
 		closeModal()
 	}
-
-	const validateInput = input => !input.toString().length
 
 	const submit = async () => {
 		await patchTeamData({
@@ -44,11 +42,9 @@ const TeamModal = () => {
 	return (
 		<div className='overlay' style={{ top: `${window.scrollY}px` }}>
 			<div
-				className={'TeamModal'.concat(
-					isEliminated ? ' redBg' : ' greenBg'
-				)}
+				className={'TeamModal'.concat(isEliminated ? ' redBg' : ' greenBg')}
 			>
-				<button className='close-modal-btn' onClick={closeModal}>
+				<button className='close-modal-btn' onClick={handleCloseClick}>
 					X
 				</button>
 
@@ -72,7 +68,7 @@ const TeamModal = () => {
 
 				<button
 					className='team-btn'
-					disabled={validateInput(pointsInput) || !id}
+					disabled={validate(pointsInput) || !id}
 					onClick={() => {
 						submit()
 						handleCloseClick()
