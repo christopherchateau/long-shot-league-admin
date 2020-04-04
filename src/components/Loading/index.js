@@ -1,5 +1,6 @@
 import React from 'react'
 import loadingImg from '../../images/loading.gif'
+
 import './Loading.css'
 
 export default () =>

@@ -12,10 +12,12 @@ export default ({ bonus: { id, points, description } }) => {
 		refreshData()
 	}
 
-	return <div className='bonus'>
-		<h5 className='delete-btn' onClick={() => handleDelete(id)}>
-			X
-		</h5>
-		<h5 className='description'>{`${points} - ${description}`}</h5>
-	</div>
+	return (
+		<div className='bonus'>
+			<h5 className='delete-btn' onClick={() => handleDelete(id)}>
+				X
+			</h5>
+			<h5 className='description'>{`${points} - ${description}`}</h5>
+		</div>
+	)
 }

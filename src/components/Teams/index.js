@@ -1,31 +1,16 @@
 import React, { useContext, useState } from 'react'
 import { DataContext } from '../../contexts/DataContext'
-import { disableBodyScroll } from 'body-scroll-lock'
 
 import './Teams.css'
 
 const Teams = () => {
 	const {
 		data: { teamsData },
-		setModalProps,
+		openModal,
 	} = useContext(DataContext)
 
 	const [display, setDisplay] = useState('show all')
 	const [searchInput, setSearchInput] = useState('')
-
-	const targetElement = document.querySelector('.MainPage')
-
-	const toggleDisplay = () =>
-		display === 'show all'
-			? setDisplay('still alive')
-			: setDisplay('show all')
-
-	const handleTeamClick = selectedTeam => {
-		disableBodyScroll(targetElement)
-		setModalProps(selectedTeam)
-	}
-
-	const handleSearchInput = ({ target }) => setSearchInput(target.value)
 
 	let filteredTeams = teamsData
 
@@ -39,11 +24,18 @@ const Teams = () => {
 		)
 	}
 
+	const toggleDisplay = () =>
+		display === 'show all'
+			? setDisplay('still alive')
+			: setDisplay('show all')
+
+	const handleSearchInput = ({ target }) => setSearchInput(target.value)
+
 	const teams = filteredTeams.map(team => (
 		<div
 			className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
 			key={team.name}
-			onClick={() => handleTeamClick(team)}
+			onClick={() => openModal(team)}
 		>
 			<h3>
 				{team.name} - {team.points}

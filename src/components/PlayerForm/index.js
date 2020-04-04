@@ -6,8 +6,8 @@ import './PlayerForm.css'
 
 const PlayerForm = () => {
 	const {
-		refreshData,
 		data: { playersData },
+		refreshData,
 	} = useContext(DataContext)
 
 	const [currentPlayerData, setCurrentPlayerData] = useState([])
@@ -28,9 +28,7 @@ const PlayerForm = () => {
 		setCurrentPlayerData(currentPlayerData)
 	}
 
-	const handleBonusDropDown = bonusAmount => {
-		setBonusAmount(bonusAmount)
-	}
+	const handleBonusDropDown = bonusAmount => setBonusAmount(bonusAmount)
 
 	const handleSumbit = async () => {
 		await postBonus(currentPlayerData, bonusDescription, bonusAmount)
@@ -40,13 +38,10 @@ const PlayerForm = () => {
 	}
 
 	const teamDropDownMenu = [{ name: '' }, ...playersData].map(
-		(team, index) => {
-			return (
-				<option value={team.name} key={index}>
-					{team.name}
-				</option>
-			)
-		}
+		(team, index) =>
+			<option value={team.name} key={index}>
+				{team.name}
+			</option>
 	)
 
 	const bonusDropDownMenu = []

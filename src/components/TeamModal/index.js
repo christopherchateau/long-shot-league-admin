@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react'
 import { DataContext } from '../../contexts/DataContext'
 import { patchTeamData } from '../../utilities/apiCalls'
 import { validatePtsInput as validate } from '../../utilities/helper'
-import { clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 import './TeamModal.css'
 
@@ -22,11 +21,6 @@ const TeamModal = () => {
 
 	const toggleSwitch = () => setIsEliminated(!isEliminated)
 
-	const handleCloseClick = () => {
-		clearAllBodyScrollLocks()
-		closeModal()
-	}
-
 	const submit = async () => {
 		await patchTeamData({
 			name,
@@ -42,7 +36,7 @@ const TeamModal = () => {
 			<div
 				className={'TeamModal'.concat(isEliminated ? ' redBg' : ' greenBg')}
 			>
-				<button className='close-modal-btn' onClick={handleCloseClick}>
+				<button className='close-modal-btn' onClick={closeModal}>
 					X
 				</button>
 
@@ -69,7 +63,7 @@ const TeamModal = () => {
 					disabled={validate(pointsInput) || !id}
 					onClick={() => {
 						submit()
-						handleCloseClick()
+						closeModal()
 					}}
 				>
 					Sumbit

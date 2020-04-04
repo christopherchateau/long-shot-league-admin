@@ -16,11 +16,14 @@ const App = () => {
 
 			<Header />
 
-			{!data ? <Loading />
+			{!data
 
-				: data.errors.length ? <Errors errors={data.errors} />
-					
+				? <Loading />
+				: data.errors.length
+
+					? <Errors errors={data.errors} />
 					: <MainPage />
+
 			}
 
 			{modalProps && <TeamModal />}
