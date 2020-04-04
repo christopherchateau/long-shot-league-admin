@@ -1,5 +1,11 @@
-export const validatePtsInput = input => !input.length || +input < 0
+export const validatePtsInput = input => !input.toString().length || +input < 0
 
-export const sortData = data => data.map(d => Array.isArray(d) ? sortByName(d) : d)
+export const formatData = (types, data) =>
+	data.reduce((acc, d, i) => {
+		d.error
+			? acc.errors.push(d.error)
+			: acc[`${types[i]}`] = sortByName(d)
+		return acc
+	}, { errors: [] })
 
 const sortByName = input => input.sort((a, b) => (a.name < b.name ? -1 : 1))

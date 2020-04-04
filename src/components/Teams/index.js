@@ -6,7 +6,7 @@ import './Teams.css'
 
 const Teams = () => {
 	const {
-		data: [, teamData],
+		data: { teams: teamData },
 		setModalProps,
 	} = useContext(DataContext)
 

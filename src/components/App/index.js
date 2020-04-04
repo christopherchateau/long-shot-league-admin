@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { DataContext } from '../../contexts/DataContext'
 import Header from '../Header'
 import MainPage from '../MainPage'
@@ -11,12 +11,6 @@ import './App.css'
 const App = () => {
 	const { data, modalProps } = useContext(DataContext)
 
-	const [errors, setErrors] = useState([])
-
-	useEffect(() => {
-		if (data) setErrors(data.filter(resp => resp.error))
-	}, [data])
-
 	return (
 		<div className='App'>
 
@@ -24,7 +18,7 @@ const App = () => {
 
 			{!data ? <Loading />
 
-				: errors.length ? <Errors {...{ errors }} />
+				: data.errors.length ? <Errors errors={data.errors} />
 					
 					: <MainPage />
 			}

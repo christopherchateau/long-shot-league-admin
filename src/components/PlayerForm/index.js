@@ -7,7 +7,7 @@ import './PlayerForm.css'
 const PlayerForm = () => {
 	const {
 		refreshData,
-		data: [playerData],
+		data: { players: playerData },
 	} = useContext(DataContext)
 
 	const [currentPlayerData, setCurrentPlayerData] = useState([])

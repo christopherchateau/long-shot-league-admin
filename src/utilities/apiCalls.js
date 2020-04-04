@@ -1,4 +1,4 @@
-import { sortData } from './helper.js'
+import { formatData } from './helper.js'
 
 let endpoint
 endpoint = 'http://localhost:3001/api/v1/longshotleague'
@@ -14,7 +14,7 @@ const get = async type => {
 
 export const getData = async () => {
 	const data = await Promise.all(types.map(type => get(type)))
-	return sortData(data)
+	return formatData(types, data)
 }
 
 export const patchTeamData = async ({ name, points, is_eliminated }) =>
