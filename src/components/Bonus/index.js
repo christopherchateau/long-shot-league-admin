@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { DataContext } from '../../contexts/DataContext'
 import { deleteBonus } from '../../utilities/apiCalls'
 
 import './Bonus.css'
 
-export default ({ refreshData, bonus: { id, points, description } }) => {
+export default ({ bonus: { id, points, description } }) => {
+	const { refreshData } = useContext(DataContext)
+
 	const handleDelete = async id => {
 		await deleteBonus(id)
 		refreshData()

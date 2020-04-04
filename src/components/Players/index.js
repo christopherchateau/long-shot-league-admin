@@ -7,7 +7,6 @@ import './Players.css'
 
 const Players = () => {
 	let {
-		refreshData,
 		data: [playerData, , bonusData],
 	} = useContext(DataContext)
 
@@ -16,13 +15,13 @@ const Players = () => {
 
 		const playerBonusTotal = bonusData.reduce((total, bonus) => {
 			if (bonus.name === player.name) {
-				bonusDataDisplayed.push(
-					<Bonus {...{ bonus, refreshData, key: bonus.id }} />
-				)
+
+				bonusDataDisplayed.push(<Bonus {...{ bonus, key: bonus.id }} />)
 				total += bonus.points
 			}
 			return +total
 		}, 0)
+
 		return (
 			<div className='player' key={player.name}>
 				<h3 className='player-name'>{`${player.name} - ${playerBonusTotal}`}</h3>
@@ -30,6 +29,7 @@ const Players = () => {
 			</div>
 		)
 	})
+
 	return (
 		<div>
 			<PlayerForm />
