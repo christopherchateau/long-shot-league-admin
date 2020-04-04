@@ -7,7 +7,7 @@ import './PlayerForm.css'
 const PlayerForm = () => {
 	const {
 		refreshData,
-		data: { players: playerData },
+		data: { playersData },
 	} = useContext(DataContext)
 
 	const [currentPlayerData, setCurrentPlayerData] = useState([])
@@ -22,7 +22,7 @@ const PlayerForm = () => {
 	}
 
 	const handlePlayerDropDown = name => {
-		const currentPlayerData = playerData.find(
+		const currentPlayerData = playersData.find(
 			player => player.name === name
 		)
 		setCurrentPlayerData(currentPlayerData)
@@ -39,7 +39,7 @@ const PlayerForm = () => {
 		setBonusDescription('')
 	}
 
-	const teamDropDownMenu = [{ name: '' }, ...playerData].map(
+	const teamDropDownMenu = [{ name: '' }, ...playersData].map(
 		(team, index) => {
 			return (
 				<option value={team.name} key={index}>

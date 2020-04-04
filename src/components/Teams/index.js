@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { DataContext } from '../../contexts/DataContext'
 import { disableBodyScroll } from 'body-scroll-lock'
 
@@ -6,7 +6,7 @@ import './Teams.css'
 
 const Teams = () => {
 	const {
-		data: { teams: teamData },
+		data: { teamsData },
 		setModalProps,
 	} = useContext(DataContext)
 
@@ -27,7 +27,7 @@ const Teams = () => {
 
 	const handleSearchInput = ({ target }) => setSearchInput(target.value)
 
-	let filteredTeams = teamData
+	let filteredTeams = teamsData
 
 	if (display === 'still alive') {
 		filteredTeams = filteredTeams.filter(({ is_eliminated }) => !is_eliminated)

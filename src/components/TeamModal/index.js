@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { DataContext } from '../../contexts/DataContext'
 import { patchTeamData } from '../../utilities/apiCalls'
 import { validatePtsInput as validate } from '../../utilities/helper'
-import { enableBodyScroll } from 'body-scroll-lock'
+import { clearAllBodyScrollLocks } from 'body-scroll-lock'
 
 import './TeamModal.css'
 
@@ -16,8 +16,6 @@ const TeamModal = () => {
 	const [pointsInput, setPointsInput] = useState(points)
 	const [isEliminated, setIsEliminated] = useState(is_eliminated)
 
-	const targetElement = document.querySelector('.MainPage')
-
 	useEffect(() => { submit() }, [isEliminated])
 
 	const handleInputField = e => setPointsInput(e.target.value)
@@ -25,7 +23,7 @@ const TeamModal = () => {
 	const toggleSwitch = () => setIsEliminated(!isEliminated)
 
 	const handleCloseClick = () => {
-		enableBodyScroll(targetElement)
+		clearAllBodyScrollLocks()
 		closeModal()
 	}
 

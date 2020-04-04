@@ -4,7 +4,7 @@ export const formatData = (types, data) =>
 	data.reduce((acc, d, i) => {
 		d.error
 			? acc.errors.push(d.error)
-			: acc[`${types[i]}`] = sortByName(d)
+			: acc[`${types[i]}Data`] = sortByName(d)
 		return acc
 	}, { errors: [] })
 

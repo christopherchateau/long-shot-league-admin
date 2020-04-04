@@ -6,11 +6,11 @@ import PlayerForm from '../PlayerForm'
 import './Players.css'
 
 const Players = () => {
-	let {
-		data: [playerData, , bonusData],
+	const {
+		data: { playersData, bonusData },
 	} = useContext(DataContext)
 
-	const players = playerData.map(player => {
+	const players = playersData.map(player => {
 		const bonusDataDisplayed = []
 
 		const playerBonusTotal = bonusData.reduce((total, bonus) => {
