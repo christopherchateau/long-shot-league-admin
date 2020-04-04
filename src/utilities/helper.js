@@ -1,4 +1,4 @@
-export const validatePtsInput = input => !input.toString().length
+export const validatePtsInput = input => !input.length || +input < 0
 
 export const sortData = data => data.map(d => Array.isArray(d) ? sortByName(d) : d)
 

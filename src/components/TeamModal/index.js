@@ -32,7 +32,7 @@ const TeamModal = () => {
 	const submit = async () => {
 		await patchTeamData({
 			name,
-			points: pointsInput,
+			points: parseInt(pointsInput),
 			is_eliminated: isEliminated,
 		})
 
