@@ -5,11 +5,12 @@ import { enableBodyScroll } from 'body-scroll-lock'
 
 import './TeamModal.css'
 
-const TeamModal = ({
-	team: { id, name, points, is_eliminated },
-	showModal,
-}) => {
-	const { refreshData } = useContext(DataContext)
+const TeamModal = () => {
+	const {
+		refreshData,
+		closeModal,
+		modalProps: { id, name, points, is_eliminated },
+	} = useContext(DataContext)
 
 	const [pointsInput, setPointsInput] = useState(points)
 	const [isEliminated, setIsEliminated] = useState(is_eliminated)
@@ -23,9 +24,9 @@ const TeamModal = ({
 
 	const toggleSwitch = () => setIsEliminated(!isEliminated)
 
-	const closeModal = () => {
+	const handleCloseClick = () => {
 		enableBodyScroll(targetElement)
-		showModal(false)
+		closeModal()
 	}
 
 	const validateInput = input => !input.toString().length
@@ -74,7 +75,7 @@ const TeamModal = ({
 					disabled={validateInput(pointsInput) || !id}
 					onClick={() => {
 						submit()
-						closeModal()
+						handleCloseClick()
 					}}
 				>
 					Sumbit

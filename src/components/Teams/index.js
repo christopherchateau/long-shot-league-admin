@@ -7,6 +7,7 @@ import './Teams.css'
 const Teams = () => {
 	let {
 		data: [, teamData],
+		setModalProps,
 	} = useContext(DataContext)
 
 	const [display, setDisplay] = useState('show all')
@@ -20,7 +21,7 @@ const Teams = () => {
 
 	const handleTeamClick = selectedTeam => {
 		disableBodyScroll(targetElement)
-		// showModal(selectedTeam)
+		setModalProps(selectedTeam)
 	}
 
 	const handleSearchInput = ({ target }) => setSearchInput(target.value)

@@ -9,16 +9,13 @@ import Errors from '../Errors'
 import './App.css'
 
 const App = () => {
-	const { data } = useContext(DataContext)
+	const { data, modalProps } = useContext(DataContext)
 
 	const [errors, setErrors] = useState([])
-	const [modalProps, setModalProps] = useState(null)
 
 	useEffect(() => {
 		if (data) setErrors(data.filter(resp => resp.error))
 	}, [data])
-
-	const showModal = modalProps => setModalProps(modalProps)
 
 	return (
 		<div className='App'>
@@ -29,12 +26,10 @@ const App = () => {
 
 				: errors.length ? <Errors {...{ errors }} />
 					
-					: <MainPage {...{ showModal }} />
+					: <MainPage />
 			}
 
-			{modalProps &&
-				<TeamModal {...{ team: modalProps, showModal }} />
-			}
+			{modalProps && <TeamModal />}
 
 		</div>
 	)
