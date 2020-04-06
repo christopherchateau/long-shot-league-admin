@@ -12,17 +12,15 @@ const Teams = () => {
 	const [display, setDisplay] = useState('show all')
 	const [searchInput, setSearchInput] = useState('')
 
-	let filteredTeams = teamsData
+	let filteredTeams = [...teamsData]
 
-	if (display === 'still alive') {
+	if (display === 'still alive')
 		filteredTeams = filteredTeams.filter(({ is_eliminated }) => !is_eliminated)
-	}
 
-	if (searchInput) {
+	if (searchInput)
 		filteredTeams = filteredTeams.filter(({ name }) =>
 			name.toLowerCase().includes(searchInput.toLowerCase())
 		)
-	}
 
 	const toggleDisplay = () =>
 		display === 'show all'

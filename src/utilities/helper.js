@@ -1,11 +1,11 @@
 export const validatePtsInput = input => !input.toString().length || +input < 0
 
-export const formatData = (types, data) =>
+export const formatApiData = (paths, data) =>
 	data.reduce(
 		(acc, d, i) => {
 			d.error
 				? acc.errors.push(d.error)
-				: (acc[`${types[i]}Data`] = sortByName(d))
+				: (acc[`${paths[i]}Data`] = sortByName(d))
 
 			return acc
 		},
