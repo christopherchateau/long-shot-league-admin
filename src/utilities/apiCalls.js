@@ -1,8 +1,8 @@
 import { formatApiData as format } from './helper.js'
 
 let endpoint
-endpoint = 'http://localhost:3001/api/v1/longshotleague'
-// endpoint = 'https://long-shot-league-be.herokuapp.com/api/v1/longshotleague'
+// endpoint = 'http://localhost:3001/api/v1/longshotleague'
+endpoint = 'https://long-shot-league-be.herokuapp.com/api/v1/longshotleague'
 
 const paths = ['players', 'teams', 'bonus']
 const headers = { 'Content-Type': 'application/json' }

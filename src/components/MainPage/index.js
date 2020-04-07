@@ -10,11 +10,11 @@ const MainPage = () => {
 	const handleToggleBtn = () =>
 		display === 'teams' ? setDisplay('players') : setDisplay('teams')
 
-	const toggleBtn = (
+	const toggleBtn =
 		<button className='main-page-toggle-btn' onClick={handleToggleBtn}>
 			{display}
 		</button>
-	)
+
 	return (
 		<div className='MainPage'>
 			{toggleBtn}
