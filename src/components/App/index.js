@@ -10,26 +10,16 @@ import Errors from '../Errors'
 import './App.css'
 
 const App = () => {
-	const { data } = useContext(DataContext)
+	const { loading, errors } = useContext(DataContext)
 	const { modalProps } = useContext(DisplayContext)
 
 	return (
 		<div className='App'>
-
 			<Header />
 
-			{!data
-
-				? <Loading />
-				: data.errors.length
-
-					? <Errors errors={data.errors} />
-					: <MainPage />
-
-			}
+			{loading ? <Loading /> : errors.length ? <Errors /> : <MainPage />}
 
 			{modalProps && <TeamModal />}
-
 		</div>
 	)
 }
