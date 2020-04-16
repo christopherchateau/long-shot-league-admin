@@ -6,7 +6,6 @@
 
 .Teams,
 .Players {
-	background: silver;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;

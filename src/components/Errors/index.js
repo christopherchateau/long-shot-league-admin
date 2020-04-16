@@ -5,7 +5,7 @@ import './Errors.css'
 
 export default () => {
 	const { errors } = useContext(DataContext)
-	console.log(errors)
+
 	return (
 		<div className='error'>
 			<h1>ERROR</h1>
