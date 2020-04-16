@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { DataContext } from '../../contexts/DataContext'
+import { DisplayContext } from '../../contexts/DisplayContext'
 
 import './Teams.css'
 
 const Teams = () => {
+	const { openModal } = useContext(DisplayContext)
 	const {
 		data: { teamsData },
-		openModal,
 	} = useContext(DataContext)
 
 	const [display, setDisplay] = useState('show all')
@@ -15,7 +16,9 @@ const Teams = () => {
 	let filteredTeams = [...teamsData]
 
 	if (display === 'still alive')
-		filteredTeams = filteredTeams.filter(({ is_eliminated }) => !is_eliminated)
+		filteredTeams = filteredTeams.filter(
+			({ is_eliminated }) => !is_eliminated
+		)
 
 	if (searchInput)
 		filteredTeams = filteredTeams.filter(({ name }) =>
@@ -29,7 +32,7 @@ const Teams = () => {
 
 	const handleSearchInput = ({ target }) => setSearchInput(target.value)
 
-	const teams = filteredTeams.map(team => (
+	const teams = filteredTeams.map(team =>
 		<div
 			className={'team'.concat(team.is_eliminated ? ' red' : ' green')}
 			key={team.name}
@@ -40,7 +43,7 @@ const Teams = () => {
 			</h3>
 			<h5>{team.drafted_by}</h5>
 		</div>
-	))
+	)
 
 	return (
 		<div>

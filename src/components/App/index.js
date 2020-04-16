@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../../contexts/DataContext'
+import { DisplayContext } from '../../contexts/DisplayContext'
 import Header from '../Header'
 import MainPage from '../MainPage'
 import TeamModal from '../TeamModal'
@@ -9,7 +10,8 @@ import Errors from '../Errors'
 import './App.css'
 
 const App = () => {
-	const { data, modalProps } = useContext(DataContext)
+	const { data } = useContext(DataContext)
+	const { modalProps } = useContext(DisplayContext)
 
 	return (
 		<div className='App'>

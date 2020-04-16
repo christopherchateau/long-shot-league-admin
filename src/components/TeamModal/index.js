@@ -1,16 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { DataContext } from '../../contexts/DataContext'
+import { DisplayContext } from '../../contexts/DisplayContext'
 import { patchTeamData } from '../../utilities/apiCalls'
 import { validatePtsInput as validate } from '../../utilities/helper'
 
 import './TeamModal.css'
 
 const TeamModal = () => {
+	const { refreshData } = useContext(DataContext)
 	const {
-		refreshData,
 		closeModal,
 		modalProps: { id, name, points, is_eliminated },
-	} = useContext(DataContext)
+	} = useContext(DisplayContext)
 
 	const [pointsInput, setPointsInput] = useState(points)
 	const [isEliminated, setIsEliminated] = useState(is_eliminated)
