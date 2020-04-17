@@ -6,9 +6,6 @@ export const DataContext = createContext()
 const DataContextProvider = props => {
 	const [data, setData] = useState(null)
 
-	const loading = !data
-	const errors = (data && data.errors) || null
-	
 	useEffect(() => { loadData() }, [])
 
 	const loadData = async () => {
@@ -19,8 +16,8 @@ const DataContextProvider = props => {
 		<DataContext.Provider
 			value={{
 				data,
-				errors,
-				loading,
+				loading: !data,
+				errors: (data && data.errors) || null,
 				refreshData: loadData,
 			}}
 		>
