@@ -18,6 +18,7 @@ const DataContextProvider = props => {
 				data,
 				loading: !data,
 				errors: (data && data.errors) || null,
+				showErrors: data && data.errors && data.errors.length,
 				refreshData: loadData,
 			}}
 		>

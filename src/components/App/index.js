@@ -10,14 +10,14 @@ import Errors from '../Errors'
 import './App.css'
 
 const App = () => {
-	const { loading, errors } = useContext(DataContext)
+	const { loading, showErrors } = useContext(DataContext)
 	const { modalProps } = useContext(DisplayContext)
 
 	return (
 		<div className='App'>
 			<Header />
 
-			{loading ? <Loading /> : errors.length ? <Errors /> : <MainPage />}
+			{loading ? <Loading /> : showErrors ? <Errors /> : <MainPage />}
 
 			{modalProps && <TeamModal />}
 		</div>
