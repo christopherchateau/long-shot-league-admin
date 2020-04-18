@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/long-shot-league-admin/static/js/runtime~main.0ec1a9df.js"
   },
   {
-    "revision": "9e85308d93e4c69fee28",
-    "url": "/long-shot-league-admin/static/js/main.c3a140c3.chunk.js"
+    "revision": "7ca0dc0edfc13d4d36f6",
+    "url": "/long-shot-league-admin/static/js/main.d2470cf6.chunk.js"
   },
   {
     "revision": "e72e39e337daf6a8b5e7",
     "url": "/long-shot-league-admin/static/js/2.b86e5fe3.chunk.js"
   },
   {
-    "revision": "9e85308d93e4c69fee28",
+    "revision": "7ca0dc0edfc13d4d36f6",
     "url": "/long-shot-league-admin/static/css/main.83421d5a.chunk.css"
   },
   {
-    "revision": "fcb641b5240b3b1e3cf23a1a2961e448",
+    "revision": "4aeb16ad10c933a50ef73f39dac1e91b",
     "url": "/long-shot-league-admin/index.html"
   }
 ];
